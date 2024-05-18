@@ -1,0 +1,6 @@
+../Core/Src/MotorDriver.cpp:11:1:MotorDriver::MotorDriver(TIM_HandleTypeDef*, GPIO_TypeDef*, uint16_t, uint32_t, GPIO_TypeDef*, uint16_t, uint32_t)	24	static
+../Core/Src/MotorDriver.cpp:26:1:MotorDriver::~MotorDriver()	16	static
+../Core/Src/MotorDriver.cpp:26:1:virtual MotorDriver::~MotorDriver()	16	static
+../Core/Src/MotorDriver.cpp:31:6:void MotorDriver::set_duty(float)	32	static
+../Core/Src/MotorDriver.cpp:61:6:void MotorDriver::enable()	16	static
+../Core/Src/MotorDriver.cpp:67:6:void MotorDriver::disable()	16	static

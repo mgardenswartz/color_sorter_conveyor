@@ -1,0 +1,17 @@
+21:48:19 **** Incremental Build of configuration Debug for project lab-03 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/RemoteControlControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RemoteControlControl.d" -MT"Core/Src/RemoteControlControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RemoteControlControl.o"
+arm-none-eabi-g++ -o "lab-03.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\lab-03\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab-03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: lab-03.elf
+ 
+arm-none-eabi-size  lab-03.elf 
+arm-none-eabi-objdump -h -S lab-03.elf  > "lab-03.list"
+   text	   data	    bss	    dec	    hex	filename
+  19452	     92	   2204	  21748	   54f4	lab-03.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab-03.list
+ 
+
+21:48:20 Build Finished. 0 errors, 0 warnings. (took 600ms)
+

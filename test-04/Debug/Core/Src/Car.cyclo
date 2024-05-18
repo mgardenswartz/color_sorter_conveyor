@@ -1,0 +1,4 @@
+../Core/Src/Car.cpp:10:1:Car::Car(const char*, const char*, int, uint64_t, TIM_HandleTypeDef*)	1
+../Core/Src/Car.cpp:18:1:Car::~Car()	1
+../Core/Src/Car.cpp:18:1:virtual Car::~Car()	1
+../Core/Src/Car.cpp:22:6:void Car::drive()	1

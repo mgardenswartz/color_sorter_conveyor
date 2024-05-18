@@ -1,0 +1,19 @@
+/*
+ * RemoteControlControl.h
+ *
+ *  Created on: May 15, 2024
+ *      Author: Max
+ */
+
+#ifndef SRC_REMOTECONTROLCONTROL_H_
+#define SRC_REMOTECONTROLCONTROL_H_
+
+#include "stm32f4xx_hal.h"
+
+class RemoteControlControl {
+public:
+	RemoteControlControl();
+	virtual ~RemoteControlControl();
+};
+
+#endif /* SRC_REMOTECONTROLCONTROL_H_ */

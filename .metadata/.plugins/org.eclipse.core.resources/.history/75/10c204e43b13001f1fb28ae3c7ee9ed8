@@ -1,0 +1,23 @@
+/*
+ * RemoteControlControl.cpp
+ *
+ *  Created on: May 15, 2024
+ *      Author: Max
+ */
+
+#include "RemoteControlControl.h"
+
+RemoteControlControl::RemoteControlControl(
+		RCChannel* rc_channel,
+		MotorDriver* motor,
+		bool invert):
+		rc_channel(rc_channel),
+		motor(motor),
+		invert(invert)
+		 {
+		 }
+
+RemoteControlControl::~RemoteControlControl() {
+	// TODO Auto-generated destructor stub
+}
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="value"/>
+		<list key="findhistory">
+			<item value="value"/>
+			<item value="RC_signal_period_us"/>
+			<item value="period"/>
+			<item value="string_length"/>
+			<item value="CPU_CLOCK"/>
+			<item value="CPU_clock_speed"/>
+			<item value="reverse"/>
+			<item value="pre"/>
+			<item value="const "/>
+			<item value="95"/>
+			<item value="96-"/>
+			<item value="_percent"/>
+			<item value="uint32_t"/>
+			<item value="full_neutral"/>
+			<item value="usWidth"/>
+		</list>
+		<list key="replacehistory">
+			<item value="RC_SIGNAL_PERIOD_US"/>
+			<item value="MESSAGE_LENGTH"/>
+			<item value="CPU_CLOCK_SPEED"/>
+			<item value=""/>
+			<item value="_value"/>
+			<item value="int16_t"/>
+			<item value="neutral"/>
+			<item value="us_width"/>
+			<item value="string_length"/>
+			<item value="Receiver"/>
+			<item value="ReceiverDriver"/>
+			<item value="buffer"/>
+			<item value="invalid_hex"/>
+			<item value="strlen(system_message),"/>
+			<item value="strlen(system_message)"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="727"/>
+		<item key="DIALOG_Y_ORIGIN" value="463"/>
+		<item key="DIALOG_WIDTH" value="318"/>
+		<item key="DIALOG_HEIGHT" value="354"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

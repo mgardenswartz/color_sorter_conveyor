@@ -1,0 +1,9 @@
+../Core/Src/main.cpp:80:6:void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef*)	4
+../Core/Src/main.cpp:109:5:int main()	1
+../Core/Src/main.cpp:190:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:236:13:void MX_TIM1_Init()	5
+../Core/Src/main.cpp:289:13:void MX_TIM3_Init()	4
+../Core/Src/main.cpp:334:13:void MX_USART1_UART_Init()	2
+../Core/Src/main.cpp:367:13:void MX_USART2_UART_Init()	2
+../Core/Src/main.cpp:400:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:444:6:void Error_Handler()	1

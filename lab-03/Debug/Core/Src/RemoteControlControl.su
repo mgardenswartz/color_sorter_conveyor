@@ -1,0 +1,3 @@
+../Core/Src/RemoteControlControl.cpp:10:1:RemoteControlControl::RemoteControlControl(RCChannel*, MotorDriver*, bool)	24	static
+../Core/Src/RemoteControlControl.cpp:24:1:RemoteControlControl::~RemoteControlControl()	16	static
+../Core/Src/RemoteControlControl.cpp:24:1:virtual RemoteControlControl::~RemoteControlControl()	16	static

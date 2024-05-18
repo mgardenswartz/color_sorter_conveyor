@@ -1,0 +1,16 @@
+class Car {
+	public:
+		char brand[50];
+		char model[50];
+		int year;
+		Car(const char* w, const char* x, int y, uint32_t z);
+	private:
+		uint32_t serial_number;
+};
+
+Car::Car(const char* w, const char* x, int y, uint32_t z){
+	strcpy(brand, w);
+	strcpy(model, x);
+	year = y;
+	serial_number = z;
+};
