@@ -54,7 +54,7 @@ RCChannel::RCChannel(
 }
 
 
-void RCChannel::callback(){
+void RCChannel::TIM_IC_CaptureCallback(){
 	if(first_capture)
  	{
  		first_value = HAL_TIM_ReadCapturedValue(timer_handle, timer_channel);
@@ -66,7 +66,7 @@ void RCChannel::callback(){
 
  		if(first_value > second_value)
  		{
- 			difference = minuend - first_value + second_value + 1;
+ 			difference = minuend - first_value + second_value;
  		}
  		else
  		{

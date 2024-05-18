@@ -24,7 +24,7 @@ public:
 		int32_t rescale_reverse_magnitude
     );
     virtual ~RCChannel();
-    void callback();
+    void TIM_IC_CaptureCallback();
 
 
     // Public variables

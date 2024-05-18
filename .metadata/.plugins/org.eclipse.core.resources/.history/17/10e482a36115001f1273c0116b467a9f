@@ -23,7 +23,6 @@ RemoteControlControl::RemoteControlControl(
 
 void RemoteControlControl::update()
 {
-	//
 	// Read from the remote control channel
 	int32_t value = rc_channel->value;
 
@@ -32,7 +31,6 @@ void RemoteControlControl::update()
 	if(value<0)
 	{
 		direction = true;
-		value *= -1;
 	}
 	else
 	{

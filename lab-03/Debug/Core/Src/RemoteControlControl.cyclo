@@ -1,4 +1,4 @@
 ../Core/Src/RemoteControlControl.cpp:10:1:RemoteControlControl::RemoteControlControl(RCChannel*, MotorDriver*, bool)	1
 ../Core/Src/RemoteControlControl.cpp:24:6:void RemoteControlControl::update()	2
-../Core/Src/RemoteControlControl.cpp:44:1:RemoteControlControl::~RemoteControlControl()	5
-../Core/Src/RemoteControlControl.cpp:44:1:virtual RemoteControlControl::~RemoteControlControl()	1
+../Core/Src/RemoteControlControl.cpp:46:1:RemoteControlControl::~RemoteControlControl()	5
+../Core/Src/RemoteControlControl.cpp:46:1:virtual RemoteControlControl::~RemoteControlControl()	1

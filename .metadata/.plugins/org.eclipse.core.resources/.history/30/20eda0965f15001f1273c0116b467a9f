@@ -54,7 +54,7 @@ RCChannel::RCChannel(
 }
 
 
-void RCChannel::callback(){
+void RCChannel::TIM_IC_CaptureCallback(){
 	if(first_capture)
  	{
  		first_value = HAL_TIM_ReadCapturedValue(timer_handle, timer_channel);
@@ -66,7 +66,7 @@ void RCChannel::callback(){
 
  		if(first_value > second_value)
  		{
- 			difference = minuend - first_value + second_value + 1;
+ 			difference = minuend - first_value + second_value;
  		}
  		else
  		{
@@ -83,8 +83,6 @@ void RCChannel::callback(){
 
  		// Rescale
 		int32_t centered_value = us_width - neutral_us_width;
-
-		// Forward case
  		if(centered_value >= 0)
  		{
  			value = centered_value*rescale_forward_magnitude/forward_range;
@@ -95,8 +93,6 @@ void RCChannel::callback(){
  	 			value = rescale_forward_magnitude;
  	 		}
  		}
-
- 		// Reverse case
  		else
 		{
 			value =  centered_value*rescale_reverse_magnitude/reverse_range;
