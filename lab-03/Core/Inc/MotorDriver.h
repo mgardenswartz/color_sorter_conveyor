@@ -22,7 +22,7 @@ public:
 			GPIO_TypeDef* pin_1_group, uint16_t pin_1, uint32_t pin_1_timer_channel,
 			GPIO_TypeDef* pin_2_group, uint16_t pin_2, uint32_t pin_2_timer_channel);
 	virtual ~MotorDriver();
-	void set_compare_value(float compare_value, bool direction, bool inverted);
+	void set_inverted_compare_value(int32_t compare_value, bool direction = false, bool inverted = true);
 	void set_duty(float duty);
 	void enable();
 	void disable();

@@ -36,7 +36,7 @@ void MotorDriver::set_duty(float duty = 0)
 	// Update duty cycle
 	if(duty>=0)
 	{
-		int compare_value = (100-duty)*auto_reload_value/100;
+		uint32_t compare_value = (100-duty)*auto_reload_value/100;
 
 		// Raise pin 1
 		__HAL_TIM_SET_COMPARE(timer, pin_1_timer_channel, auto_reload_value);
@@ -49,7 +49,7 @@ void MotorDriver::set_duty(float duty = 0)
 	{
 		// Absolute value
 		duty *= -1;
-		int compare_value = (100-duty)*auto_reload_value/100;
+		uint32_t compare_value = (100-duty)*auto_reload_value/100;
 
 		// Raise pin 2
 		__HAL_TIM_SET_COMPARE(timer, pin_2_timer_channel, auto_reload_value);
@@ -59,7 +59,7 @@ void MotorDriver::set_duty(float duty = 0)
 	}
 }
 
-void MotorDriver::set_compare_value(float compare_value, bool direction = false, bool inverted = true)
+void MotorDriver::set_inverted_compare_value(int32_t compare_value, bool direction, bool inverted)
 {
 	// Get the auto_reload_value
 	if(inverted)

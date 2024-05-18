@@ -1,0 +1,41 @@
+/*
+ * MotorDriver.h
+ *
+ *  Created on: May 15, 2024
+ *      Author: Max Gardenswartz
+ */
+
+#ifndef SRC_MOTORDRIVER_H_
+#define SRC_MOTORDRIVER_H_
+
+#include "stm32f4xx_hal.h"
+#include <cstdint>
+// #include <cassert>
+
+class MotorDriver {
+public:
+	// Class attributes
+	TIM_HandleTypeDef* timer;
+
+	// Methods
+	MotorDriver(TIM_HandleTypeDef* timer,
+			GPIO_TypeDef* pin_1_group, uint16_t pin_1, uint32_t pin_1_timer_channel,
+			GPIO_TypeDef* pin_2_group, uint16_t pin_2, uint32_t pin_2_timer_channel);
+	virtual ~MotorDriver();
+	void set_inverted_compare_value(float compare_value, bool direction, bool inverted);
+	void set_duty(float duty);
+	void enable();
+	void disable();
+
+private:
+	// Class attributes
+	GPIO_TypeDef* pin_1_group;
+	uint16_t pin_1;
+	uint32_t pin_1_timer_channel;
+	GPIO_TypeDef* pin_2_group;
+	uint16_t pin_2;
+	uint16_t pin_2_timer_channel;
+	uint32_t auto_reload_value;
+};
+
+#endif /* SRC_MOTORDRIVER_H_ */

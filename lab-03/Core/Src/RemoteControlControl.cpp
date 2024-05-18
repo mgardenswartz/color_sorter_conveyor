@@ -26,21 +26,36 @@ void RemoteControlControl::update()
 	// Read from the remote control channel
 	int32_t value = rc_channel->value;
 
+	// Set direction
+	bool direction;
 	if(value<0)
 	{
-		bool direction = true;
+		direction = true;
 	}
 	else
 	{
-		bool direction = false;
+		direction = false;
 	}
 
 	// Update the motor
-	motor->set_compare_value(value, direction);
+	motor->set_inverted_compare_value(value, direction);
 
 }
 RemoteControlControl::~RemoteControlControl()
 {
-	// TODO Auto-generated destructor stub
+    // Release any dynamically allocated resources
+    // Deallocate memory for rc_channel if it was dynamically allocated
+    if (rc_channel != nullptr)
+    {
+        delete rc_channel;
+        rc_channel = nullptr; // Optional: Set to nullptr to avoid dangling pointers
+    }
+
+    // Deallocate memory for motor if it was dynamically allocated
+    if (motor != nullptr)
+    {
+        delete motor;
+        motor = nullptr; // Optional: Set to nullptr to avoid dangling pointers
+    }
 }
 

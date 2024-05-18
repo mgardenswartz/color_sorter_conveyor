@@ -14,17 +14,19 @@
 
 class RemoteControlControl {
 public:
+	RCChannel* rc_channel;
+	MotorDriver* motor;
+	bool invert;
+
 	RemoteControlControl(
 			RCChannel* rc_channel,
 			MotorDriver* motor,
-			bool invert
+			bool invert = false
 			);
 	void update();
 	virtual ~RemoteControlControl();
 
-	RCChannel* rc_channel;
-	MotorDriver* motor;
-	bool invert;
+
 private:
 	// Attributes
 
