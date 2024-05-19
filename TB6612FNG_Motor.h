@@ -23,7 +23,7 @@ class TB6612FNG_Motor
 			GPIO_TypeDef* IN1_pin_group, uint16_t IN1_pin,
 			GPIO_TypeDef* IN2_pin_group, uint16_t IN2_pin,
 			TIM_HandleTypeDef* pTimer, uint32_t timer_channel,
-			uint32_t CPU_clock_speed_MHz, uint16_t PWM_frequency_Hz);
+			uint32_t CPU_clock_speed_MHz, uint32_t PWM_frequency_Hz);
 		virtual ~TB6612FNG_Motor();
 		void set_duty(uint16_t duty = 0, uint16_t maximum_value = 100);
 		void start();

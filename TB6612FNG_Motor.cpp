@@ -17,14 +17,14 @@
  * @param pTimer A pointer to the timer handle for PWM generation (like &htim1).
  * @param timer_channel The channel number to be used with the timer (like TIM_CHANNEL_1).
  * @param CPU_clock_speed_MHz The CPU clock speed in MHz (like 96).
- * @param PWM_frequency_Hz The PWM frequency in Hz (like 20000).
+ * @param PWM_frequency_Hz The PWM frequency in Hz (20,000 to 100,000 allowed).
  */
 TB6612FNG_Motor::TB6612FNG_Motor(
 	GPIO_TypeDef* IN1_pin_group, uint16_t IN1_pin,
 	GPIO_TypeDef* IN2_pin_group, uint16_t IN2_pin,
 	TIM_HandleTypeDef* pTimer, uint32_t timer_channel,
 	uint32_t CPU_clock_speed_MHz,
-	uint16_t PWM_frequency_Hz = 20'000
+	uint32_t PWM_frequency_Hz = 20'000
 	)
 
 	// Note that all channels on the timer will have the same PWM frequency and prescalar
@@ -41,8 +41,7 @@ TB6612FNG_Motor::TB6612FNG_Motor(
 	// Set the auto_reload_value
 	auto_reload_value = pTimer->Init.Period;
 
-	// Set the prescalar based on the CPU clock speed and the desired PWM frequency
-	if(PWM_frequency_Hz < 20'000)
+	// Make sure the PWM frequency is within bounds
 	{
 		PWM_frequency_Hz = 20'000;
 	}
@@ -50,6 +49,9 @@ TB6612FNG_Motor::TB6612FNG_Motor(
 	{
 		PWM_frequency_Hz = 100'000;
 	}
+
+	// Set the prescalar based on the CPU clock speed and the desired PWM frequency
+	if(PWM_frequency_Hz < 20'000)
 	uint32_t prescaler = ( CPU_clock_speed_MHz * 1'000'000 / PWM_frequency_Hz ) - 1;
 	timer_handle->Instance->PSC = prescaler;
 
