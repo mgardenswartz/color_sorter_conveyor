@@ -6,8 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="value"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="p"/>
+			<item value="ps"/>
+			<item value="psc"/>
+			<item value="pre"/>
 			<item value="value"/>
 			<item value="RC_signal_period_us"/>
 			<item value="period"/>
@@ -15,14 +19,10 @@
 			<item value="CPU_CLOCK"/>
 			<item value="CPU_clock_speed"/>
 			<item value="reverse"/>
-			<item value="pre"/>
 			<item value="const "/>
 			<item value="95"/>
 			<item value="96-"/>
 			<item value="_percent"/>
-			<item value="uint32_t"/>
-			<item value="full_neutral"/>
-			<item value="usWidth"/>
 		</list>
 		<list key="replacehistory">
 			<item value="RC_SIGNAL_PERIOD_US"/>
