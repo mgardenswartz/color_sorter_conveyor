@@ -42,16 +42,16 @@ TB6612FNG_Motor::TB6612FNG_Motor(
 	auto_reload_value = pTimer->Init.Period;
 
 	// Make sure the PWM frequency is within bounds
+	if(PWM_frequency_Hz < 20'000)
 	{
 		PWM_frequency_Hz = 20'000;
 	}
-	else if(PWM_frequency_Hz > 100'000)
+	else 
 	{
 		PWM_frequency_Hz = 100'000;
 	}
 
 	// Set the prescalar based on the CPU clock speed and the desired PWM frequency
-	if(PWM_frequency_Hz < 20'000)
 	uint32_t prescaler = ( CPU_clock_speed_MHz * 1'000'000 / PWM_frequency_Hz ) - 1;
 	timer_handle->Instance->PSC = prescaler;
 
