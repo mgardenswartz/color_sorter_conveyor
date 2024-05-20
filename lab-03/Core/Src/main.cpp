@@ -21,9 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
-#include <stdio.h>
-#include <stdint.h>
+#include <string.h> // For snprintf and strlen
+#include <stdio.h> // For
+#include <stdint.h> // For uint8_t, uint16_t, uint32_t, etc.
 #include "RCChannel.h"
 #include "RemoteControlControl.h"
 #include "MotorDriver.h"
@@ -190,9 +190,6 @@ int main(void)
 		    Motor_2
 			);
 
-  Motor_1->set_duty(10);
-  Motor_2->set_duty(-10);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -204,12 +201,12 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  HAL_Delay(250);
-	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%%, CH2: %*li%%.\r\n",
-	                             VALUE_WIDTH, (long signed int)SteeringChannel->us_width, //value,
-	                             VALUE_WIDTH, (long signed int)ThrottleChannel->us_width); //value);
 //	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%%, CH2: %*li%%.\r\n",
-//	                             VALUE_WIDTH, (long signed int)SteeringChannel->value,
-//	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value);
+//	                             VALUE_WIDTH, (long signed int)SteeringChannel->us_width, //value,
+//	                             VALUE_WIDTH, (long signed int)ThrottleChannel->us_width); //value);
+	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%%, CH2: %*li%%.\r\n",
+	                             VALUE_WIDTH, (long signed int)SteeringChannel->value,
+	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value);
 	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 
 

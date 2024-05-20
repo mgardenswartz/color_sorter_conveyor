@@ -1,6 +1,6 @@
 /**
  *  @file TB6612FNG_Motor.h
- *  @brief Header file for TB6612FNG_Motor class for driving a DC motor using the TB6612FNG motor driver.
+ *  @brief Header file for TB6612FNG_Motor class.
  *  @details This file contains the implementation of the TB6612FNG_Motor class, which provides functions for controlling a DC motor using the TB6612FNG motor driver. It includes functions for setting the motor duty cycle, enabling and disabling the motor, and setting the inverted compare value.
  *  @author Max Gardenswartz 
  *  @date May 18, 2024

@@ -1,8 +1,13 @@
-/*
- * RCChannel.h
- *
- *  Created on: May 15, 2024
- *      Author: Max
+/**
+ * @file RCChannel.h
+ * @brief Header file for the RCChannel class.
+ * 
+ * This file contains the declaration of the RCChannel class, which represents a remote control channel.
+ * The class provides functionality to handle a remote control channel, including initializing the channel,
+ * setting callback functions, and storing channel values.
+ * 
+ * @author Max Gardenswartz
+ * @date May 19, 2024
  */
 
 #ifndef SRC_RCCHANNEL_H_
@@ -45,7 +50,6 @@ public:
     int32_t rescale_forward_magnitude;
     int32_t rescale_reverse_magnitude;
 private:
-
     // Needed between methods
     uint32_t minuend;
     float mFactor;

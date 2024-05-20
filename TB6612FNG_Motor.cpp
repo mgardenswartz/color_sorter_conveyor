@@ -69,22 +69,22 @@ TB6612FNG_Motor::~TB6612FNG_Motor()
 
 /**
  * @brief Sets the duty cycle of the motor.
- * @param duty The duty cycle value, ranging from -100 to 100 by default.
+ * @param speed The duty cycle value, ranging from -100 to 100 by default.
  */
-void TB6612FNG_Motor::set_duty(uint16_t duty, uint16_t maximum_value)
+void TB6612FNG_Motor::set_speed(uint16_t duty, uint16_t maximum_value)
 {
 	// Check if duty cycle is within bounds
-	if(duty > maximum_value)
+	if(speed > maximum_value)
 	{
-		duty = maximum_value;
+		speed = maximum_value;
 	}
-	else if(duty < -maximum_value)
+	else if(speed < -maximum_value)
 	{
-		duty = -maximum_value;
+		speed = -maximum_value;
 	}
 
 	// Raise the appropriate pins
-	if(duty >= 0)
+	if(speed >= 0)
 	{
 		HAL_GPIO_WritePin(IN1_pin_group, IN1_pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(IN2_pin_group, IN2_pin, GPIO_PIN_RESET);
@@ -96,7 +96,7 @@ void TB6612FNG_Motor::set_duty(uint16_t duty, uint16_t maximum_value)
 	}
 
 	// Set the compare value
-	uint32_t compare_value = duty * auto_reload_value / maximum_value;
+	uint32_t compare_value = speed * auto_reload_value / maximum_value;
 	__HAL_TIM_SET_COMPARE(pTimer, timer_channel, compare_value);
 }
 
