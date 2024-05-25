@@ -8,6 +8,10 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="reset"/>
+			<item value="pin_Set"/>
+			<item value="_pin_Set"/>
+			<item value="set"/>
 			<item value="p"/>
 			<item value="ps"/>
 			<item value="psc"/>
@@ -19,10 +23,6 @@
 			<item value="CPU_CLOCK"/>
 			<item value="CPU_clock_speed"/>
 			<item value="reverse"/>
-			<item value="const "/>
-			<item value="95"/>
-			<item value="96-"/>
-			<item value="_percent"/>
 		</list>
 		<list key="replacehistory">
 			<item value="RC_SIGNAL_PERIOD_US"/>
