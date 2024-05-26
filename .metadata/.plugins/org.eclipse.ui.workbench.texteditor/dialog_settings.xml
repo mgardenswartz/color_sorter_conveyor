@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="COMPARE_VALUE"/>
 		<list key="findhistory">
+			<item value="50000"/>
 			<item value="reset"/>
 			<item value="pin_Set"/>
 			<item value="_pin_Set"/>
@@ -22,9 +23,9 @@
 			<item value="string_length"/>
 			<item value="CPU_CLOCK"/>
 			<item value="CPU_clock_speed"/>
-			<item value="reverse"/>
 		</list>
 		<list key="replacehistory">
+			<item value="COMPARE_VALUE"/>
 			<item value="RC_SIGNAL_PERIOD_US"/>
 			<item value="MESSAGE_LENGTH"/>
 			<item value="CPU_CLOCK_SPEED"/>
@@ -39,7 +40,6 @@
 			<item value="buffer"/>
 			<item value="invalid_hex"/>
 			<item value="strlen(system_message),"/>
-			<item value="strlen(system_message)"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

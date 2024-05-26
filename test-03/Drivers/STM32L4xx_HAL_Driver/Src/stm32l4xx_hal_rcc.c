@@ -1858,7 +1858,8 @@ static HAL_StatusTypeDef RCC_SetFlashLatencyFromMSIRange(uint32_t msirange)
     }
 #endif
   }
-
+  // Max's debug
+  latency = FLASH_LATENCY_8;
   __HAL_FLASH_SET_LATENCY(latency);
 
   /* Check that the new number of wait states is taken into account to access the Flash
