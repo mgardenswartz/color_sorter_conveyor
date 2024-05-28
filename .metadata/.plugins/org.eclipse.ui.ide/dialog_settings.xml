@@ -20,6 +20,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/max/Documents/color_sorter_conveyor/test-15"/>
+			<item value="/home/max/Documents/color_sorter_conveyor"/>
 			<item value="C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase"/>
 			<item value="C:\Users\Max Gardenswartz\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\mecha15"/>
 		</list>
