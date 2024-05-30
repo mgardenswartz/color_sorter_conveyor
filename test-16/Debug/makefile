@@ -82,8 +82,8 @@ all: main-build
 main-build: test-16.elf secondary-outputs
 
 # Tool invocations
-test-16.elf test-16.map: $(OBJS) $(USER_OBJS) /home/max/Documents/color_sorter_conveyor/test-16/STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "test-16.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/max/Documents/color_sorter_conveyor/test-16/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+test-16.elf test-16.map: $(OBJS) $(USER_OBJS) C:\Users\Max\OneDrive\ -\ Cal\ Poly\Documents\5\ Hobbies\1\ Coding\Mechatronics\ Codebases\ME\ 507\ Codebase\test-16\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "test-16.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-16\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
