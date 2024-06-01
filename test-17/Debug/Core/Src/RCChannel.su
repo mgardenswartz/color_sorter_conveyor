@@ -1,0 +1,4 @@
+../Core/Src/RCChannel.cpp:30:1:RCChannel::RCChannel(TIM_HandleTypeDef*, uint32_t, int32_t, uint32_t, int32_t, int32_t, int32_t, int32_t, int32_t)	32	static
+../Core/Src/RCChannel.cpp:86:6:void RCChannel::callback()	24	static
+../Core/Src/RCChannel.cpp:151:1:RCChannel::~RCChannel()	16	static
+../Core/Src/RCChannel.cpp:151:1:virtual RCChannel::~RCChannel()	16	static
