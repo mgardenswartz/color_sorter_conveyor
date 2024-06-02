@@ -36,7 +36,8 @@ RCChannel::RCChannel(
 	int32_t neutral_us_width,
 	int32_t full_forward_us_width,
 	int32_t rescale_forward_magnitude,
-	int32_t rescale_reverse_magnitude)
+	int32_t rescale_reverse_magnitude,
+	bool saturate)
 	:
 	timer_handle(timer_handle),
 	timer_channel(timer_channel),
@@ -46,7 +47,8 @@ RCChannel::RCChannel(
 	neutral_us_width(neutral_us_width),
 	full_forward_us_width(full_forward_us_width),
 	rescale_forward_magnitude(rescale_forward_magnitude),
-	rescale_reverse_magnitude(rescale_reverse_magnitude)
+	rescale_reverse_magnitude(rescale_reverse_magnitude),
+	saturate(saturate)
 {
 	// Critical. Starts the first interrupt.
 	HAL_TIM_IC_Start_IT(timer_handle, timer_channel);
@@ -62,10 +64,10 @@ RCChannel::RCChannel(
 		minuend = 0xffff;
 	}
 
-	// For later scaling
-	uint32_t prescalar = timer_handle->Instance->PSC + 1;
-	float refClock = CPU_clock_speed_MHz/prescalar;
-	mFactor = 1000000/refClock;
+//	// For later scaling
+//	uint32_t prescalar = timer_handle->Instance->PSC + 1;
+//	float refClock = (CPU_clock_speed_MHz*1000000)/prescalar;
+//	mFactor = 1000000/refClock;
 
 	// Needed later
 	forward_range = full_forward_us_width - neutral_us_width;
@@ -105,9 +107,11 @@ void RCChannel::callback(){
  		us_width = difference;//*mFactor;
 
 		// Fix width
+ 		falling_edge_read_first = false;
 		if(us_width > RC_signal_period_us/2)
 		{
 			us_width = RC_signal_period_us - us_width;
+			falling_edge_read_first = true;
 		}
 
  		// Rescale
@@ -119,9 +123,12 @@ void RCChannel::callback(){
  			value = centered_value*rescale_forward_magnitude/forward_range;
 
  			// Cap
- 	 		if(value>rescale_forward_magnitude)
+ 	 		if(saturate)
  	 		{
- 	 			value = rescale_forward_magnitude;
+ 	 			if(value>rescale_forward_magnitude)
+ 	 			{
+ 	 				value = rescale_forward_magnitude;
+ 	 			}
  	 		}
  		}
 

@@ -1,85 +1,132 @@
-15:16:16 **** Incremental Build of configuration Debug for project test-17 ****
-make -j16 all 
-arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "test-17.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-17\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-17.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: test-17.elf
- 
-arm-none-eabi-size  test-17.elf 
-arm-none-eabi-objdump -h -S test-17.elf  > "test-17.list"
-   text	   data	    bss	    dec	    hex	filename
-  21732	     92	   2324	  24148	   5e54	test-17.elf
-Finished building: default.size.stdout
- 
-Finished building: test-17.list
- 
-15:16:20 **** Incremental Build of configuration Debug for project test-17 ****
-make -j16 all 
-arm-none-eabi-size  test-17.elf 
-   text	   data	    bss	    dec	    hex	filename
-  21732	     92	   2324	  24148	   5e54	test-17.elf
-Finished building: default.size.stdout
- 
-15:28:31 **** Incremental Build of configuration Debug for project test-17 ****
+17:39:13 **** Incremental Build of configuration Debug for project test-18 ****
 make -j16 all 
 arm-none-eabi-g++ "../Core/Src/RCChannel.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RCChannel.d" -MT"Core/Src/RCChannel.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RCChannel.o"
+arm-none-eabi-g++ "../Core/Src/RemoteControlControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RemoteControlControl.d" -MT"Core/Src/RemoteControlControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RemoteControlControl.o"
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "test-17.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-17\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-17.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: test-17.elf
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
  
-arm-none-eabi-size  test-17.elf 
-arm-none-eabi-objdump -h -S test-17.elf  > "test-17.list"
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
    text	   data	    bss	    dec	    hex	filename
-  21632	     92	   2324	  24048	   5df0	test-17.elf
+  21400	     92	   2324	  23816	   5d08	test-18.elf
 Finished building: default.size.stdout
  
-Finished building: test-17.list
+Finished building: test-18.list
  
-15:28:47 **** Incremental Build of configuration Debug for project test-17 ****
+17:42:03 **** Incremental Build of configuration Debug for project test-18 ****
 make -j16 all 
-arm-none-eabi-size  test-17.elf 
-   text	   data	    bss	    dec	    hex	filename
-  21632	     92	   2324	  24048	   5df0	test-17.elf
-Finished building: default.size.stdout
- 
-15:29:24 **** Incremental Build of configuration Debug for project test-17 ****
-make -j16 all 
+arm-none-eabi-g++ "../Core/Src/RCChannel.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RCChannel.d" -MT"Core/Src/RCChannel.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RCChannel.o"
+arm-none-eabi-g++ "../Core/Src/RemoteControlControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RemoteControlControl.d" -MT"Core/Src/RemoteControlControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RemoteControlControl.o"
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "test-17.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-17\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-17.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: test-17.elf
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
  
-arm-none-eabi-size  test-17.elf 
-arm-none-eabi-objdump -h -S test-17.elf  > "test-17.list"
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
    text	   data	    bss	    dec	    hex	filename
-  21656	     92	   2324	  24072	   5e08	test-17.elf
+  21356	     92	   2324	  23772	   5cdc	test-18.elf
 Finished building: default.size.stdout
  
-Finished building: test-17.list
+Finished building: test-18.list
  
-15:34:27 **** Incremental Build of configuration Debug for project test-17 ****
+17:52:55 **** Incremental Build of configuration Debug for project test-18 ****
 make -j16 all 
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "test-17.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-17\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-17.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: test-17.elf
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
  
-arm-none-eabi-size  test-17.elf 
-arm-none-eabi-objdump -h -S test-17.elf  > "test-17.list"
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
    text	   data	    bss	    dec	    hex	filename
-  21656	     92	   2324	  24072	   5e08	test-17.elf
+  21356	     92	   2324	  23772	   5cdc	test-18.elf
 Finished building: default.size.stdout
  
-Finished building: test-17.list
+Finished building: test-18.list
  
-15:35:44 **** Incremental Build of configuration Debug for project test-17 ****
+17:57:32 **** Incremental Build of configuration Debug for project test-18 ****
 make -j16 all 
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-g++ -o "test-17.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-17\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-17.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: test-17.elf
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
  
-arm-none-eabi-size  test-17.elf 
-arm-none-eabi-objdump -h -S test-17.elf  > "test-17.list"
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
    text	   data	    bss	    dec	    hex	filename
-  21396	     92	   2324	  23812	   5d04	test-17.elf
+  21356	     92	   2324	  23772	   5cdc	test-18.elf
 Finished building: default.size.stdout
  
-Finished building: test-17.list
+Finished building: test-18.list
+ 
+17:58:16 **** Incremental Build of configuration Debug for project test-18 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
+ 
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
+   text	   data	    bss	    dec	    hex	filename
+  21356	     92	   2324	  23772	   5cdc	test-18.elf
+Finished building: default.size.stdout
+ 
+Finished building: test-18.list
+ 
+18:06:59 **** Incremental Build of configuration Debug for project test-18 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
+ 
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
+   text	   data	    bss	    dec	    hex	filename
+  21356	     92	   2324	  23772	   5cdc	test-18.elf
+Finished building: default.size.stdout
+ 
+Finished building: test-18.list
+ 
+18:12:08 **** Incremental Build of configuration Debug for project test-18 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/RCChannel.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RCChannel.d" -MT"Core/Src/RCChannel.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RCChannel.o"
+arm-none-eabi-g++ "../Core/Src/RemoteControlControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RemoteControlControl.d" -MT"Core/Src/RemoteControlControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RemoteControlControl.o"
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
+ 
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
+   text	   data	    bss	    dec	    hex	filename
+  21412	     92	   2324	  23828	   5d14	test-18.elf
+Finished building: default.size.stdout
+ 
+Finished building: test-18.list
+ 
+18:12:27 **** Incremental Build of configuration Debug for project test-18 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/RCChannel.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RCChannel.d" -MT"Core/Src/RCChannel.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RCChannel.o"
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
+ 
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
+   text	   data	    bss	    dec	    hex	filename
+  21420	     92	   2324	  23836	   5d1c	test-18.elf
+Finished building: default.size.stdout
+ 
+Finished building: test-18.list
+ 
+18:14:08 **** Incremental Build of configuration Debug for project test-18 ****
+make -j16 all 
+arm-none-eabi-g++ "../Core/Src/RCChannel.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RCChannel.d" -MT"Core/Src/RCChannel.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RCChannel.o"
+arm-none-eabi-g++ -o "test-18.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-18\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-18.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: test-18.elf
+ 
+arm-none-eabi-size  test-18.elf 
+arm-none-eabi-objdump -h -S test-18.elf  > "test-18.list"
+   text	   data	    bss	    dec	    hex	filename
+  21364	     92	   2324	  23780	   5ce4	test-18.elf
+Finished building: default.size.stdout
+ 
+Finished building: test-18.list
  
