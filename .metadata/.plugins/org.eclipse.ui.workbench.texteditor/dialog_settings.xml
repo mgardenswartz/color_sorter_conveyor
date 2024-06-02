@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="my_message"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="99"/>
+			<item value="new"/>
 			<item value="buffer"/>
 			<item value="cpu_cl"/>
 			<item value="cpu"/>
@@ -21,8 +23,6 @@
 			<item value="ps"/>
 			<item value="psc"/>
 			<item value="pre"/>
-			<item value="value"/>
-			<item value="RC_signal_period_us"/>
 		</list>
 		<list key="replacehistory">
 			<item value="my_message"/>

@@ -24,6 +24,8 @@ class TB6612FNG_Motor
 		uint32_t CPU_clock_speed_MHz;
 		uint16_t PWM_frequency_Hz;
 
+		uint16_t auto_reload_value;
+
 		// Methods
 		TB6612FNG_Motor(
 				GPIO_TypeDef* IN1_pin_group, uint16_t IN1_pin,
@@ -31,12 +33,12 @@ class TB6612FNG_Motor
 				TIM_HandleTypeDef* pTimer, uint32_t timer_channel,
 				uint32_t CPU_clock_speed_MHz, uint32_t PWM_frequency_Hz = 20000);
 		virtual ~TB6612FNG_Motor();
-		void set_duty(uint16_t duty = 0, uint16_t maximum_value = 100);
+		void set_duty(int16_t duty, int16_t maximum_value = 100);
 		void start();
 		void stop();
 
 	private:
-		uint16_t auto_reload_value;
+
 };
 
 #endif /* SRC_TB6612FNGMotor_H_ */

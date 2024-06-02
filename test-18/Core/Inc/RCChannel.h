@@ -40,7 +40,7 @@ class RCChannel {
 		int32_t second_value = 0;
 		int32_t difference = 0;
 		int32_t us_width = 0;
-		int32_t value = 0;
+		int32_t value = 0; // Important to prevent twitching
 
 		// Instiation arguments
 		GPIO_TypeDef* pin_group;
@@ -56,12 +56,13 @@ class RCChannel {
 		int32_t rescale_reverse_magnitude;
 		bool saturate;
 
+		// More
+		bool saturate_flag;
 	private:
 		// Needed between methods
 		uint32_t minuend;
 		float mFactor;
 		bool first_capture = true;
-		bool very_first_capture = true;
 		int32_t reverse_range;
 		int32_t forward_range;
 

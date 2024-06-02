@@ -16,7 +16,7 @@ RemoteControlControl::RemoteControlControl(RCChannel* rc_channel, TB6612FNG_Moto
 	: rc_channel(rc_channel), motor(motor)
 {
 	// Reassign the magnitudes for rescaling to prevent rounding error.
-	new_maximum_value = motor->pTimer->Init.Period;
+	new_maximum_value = motor->auto_reload_value; // Maybe pTimer->Instance.PSC
 	rc_channel->rescale_forward_magnitude = new_maximum_value;
 	rc_channel->rescale_reverse_magnitude = new_maximum_value;
 }

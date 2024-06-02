@@ -52,7 +52,7 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 #define MESSAGE_LENGTH 100
 #define CPU_CLOCK_MHZ 100
-#define MOTOR_PWM_HZ 25000
+#define MOTOR_PWM_HZ 20000
 #define RC_SIGNAL_PERIOD_US 17500
 #define VALUE_WIDTH 5
 /* USER CODE END PV */
@@ -104,7 +104,8 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					SteeringChannel->callback();
-					// Throttle->update_motor();
+//					SteeringChannel->value = -500;
+//					SteeringChannel->us_width = 6969;
 					//Steering->update_motor();
 				}
 
@@ -112,7 +113,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					ThrottleChannel->callback();
-					//Throttle->update_motor();
+					Throttle->update_motor();
 				}
 			}
 		}
@@ -177,22 +178,6 @@ int main(void)
 		  CPU_CLOCK_MHZ,
 		  MOTOR_PWM_HZ);
 
-  ThrottleChannel = new RCChannel
-		  	  	  (
-		  	  	  GPIOA,
-				  GPIO_PIN_9,
-		  		  &htim1,
-		  		  TIM_CHANNEL_2,
-		  		  RC_SIGNAL_PERIOD_US,
-		  		  CPU_CLOCK_MHZ,
-		  		  1056,  // Calibrated full reverse
-		  		  1533,  // Calibrated neutral
-		  		  2017,  // Calibrated full speed
-		  		  100,   // New max positive
-				  100,    // New max negative (magnitude)
-				  true  // Saturate if signal is over full? True by default. False good for debugging.
-		  	  	  );
-
   SteeringChannel = new RCChannel
 		  (
 		  GPIOA,
@@ -209,11 +194,34 @@ int main(void)
 		  true     // Saturate if signal is over full? True by default. False good for debugging.
 		  );
 
-//  Throttle = new RemoteControlControl
+  ThrottleChannel = new RCChannel
+		  	  	  (
+		  	  	  GPIOA,
+				  GPIO_PIN_9,
+		  		  &htim1,
+		  		  TIM_CHANNEL_2,
+		  		  RC_SIGNAL_PERIOD_US,
+		  		  CPU_CLOCK_MHZ,
+		  		  1056,  // Calibrated full reverse
+		  		  1533,  // Calibrated neutral
+		  		  2017,  // Calibrated full speed
+		  		  100,   // New max positive
+				  100,    // New max negative (magnitude)
+				  true  // Saturate if signal is over full? True by default. False good for debugging.
+		  	  	  );
+
+//  Steering = new RemoteControlControl
 //		  (
 //		  SteeringChannel,
 //		  My_Motor
 //		  );
+
+  Throttle = new RemoteControlControl
+		  (
+		  ThrottleChannel,
+		  My_Motor
+		  );
+
 
   HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
   initialized = true;
@@ -320,7 +328,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 100-1;
+  htim1.Init.Prescaler = CPU_CLOCK_MHZ-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;

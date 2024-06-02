@@ -24,7 +24,7 @@ class RemoteControlControl {
 		void update_motor();
 		virtual ~RemoteControlControl();
 	private:
-		uint32_t new_maximum_value = 100; 
+		uint16_t new_maximum_value = 100;
 };
 
 #endif /* SRC_REMOTECONTROLCONTROL_H_ */

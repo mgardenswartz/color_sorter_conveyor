@@ -71,7 +71,7 @@ RCChannel::RCChannel(
 	// For later scaling
 	uint32_t prescalar = timer_handle->Instance->PSC + 1;
 	float refClock = CPU_clock_speed_MHz/prescalar;
-	mFactor = 1000000/refClock;
+	mFactor = 1/refClock;
 
 	// Needed later
 	forward_range = full_forward_us_width - neutral_us_width;
@@ -93,29 +93,27 @@ void RCChannel::callback(){
 	// Was it a rising edge or a falling edge?
 	GPIO_PinState pinState = HAL_GPIO_ReadPin(pin_group, pin);
 
-	if(first_capture)
-	{
-		if(pinState == GPIO_PIN_SET) // Rising edge
-			{
-				first_value = HAL_TIM_ReadCapturedValue(timer_handle, timer_channel);
-				first_capture = false;
-			}
-	}
- 	else
+	if(pinState == GPIO_PIN_SET) // Rising edge
+		{
+			// Read
+			first_value = HAL_TIM_ReadCapturedValue(timer_handle, timer_channel);
+		}
+ 	else // Falling edge
  	{
+ 		// Read
  		second_value = HAL_TIM_ReadCapturedValue(timer_handle, timer_channel);
 
+		// Calculate the pulse width
  		if(first_value > second_value)
  		{
+			// The timer overflowed. Adjust.
  			difference = minuend - first_value + second_value + 1;
  		}
  		else
  		{
  			difference = second_value - first_value;
  		}
-
  		us_width = difference;//*mFactor;
-
 
  		// Rescale
 		int32_t centered_value = us_width - neutral_us_width;
@@ -125,14 +123,17 @@ void RCChannel::callback(){
  		{
  			value = centered_value*rescale_forward_magnitude/forward_range;
 
- 			// Cap
- 	 		if(saturate)
- 	 		{
- 	 			if(value>rescale_forward_magnitude)
- 	 			{
- 	 				value = rescale_forward_magnitude;
- 	 			}
- 	 		}
+ 			// Disallow values over the maximum positive magnitude
+			if(value>rescale_forward_magnitude && saturate)
+			{
+				value = rescale_forward_magnitude;
+	 			saturate_flag = true;
+	 		}
+	 		else
+	 		{
+	 			saturate_flag = false;
+	 		}
+
  		}
 
  		// Reverse case
@@ -140,10 +141,15 @@ void RCChannel::callback(){
 		{
 			value =  centered_value*rescale_reverse_magnitude/reverse_range;
 
-			// Cap
+			// Disallow values under the negative magnitude
 	 		if(value<-rescale_reverse_magnitude)
 	 		{
 	 			value = -rescale_reverse_magnitude;
+	 			saturate_flag = true;
+	 		}
+	 		else
+	 		{
+	 			saturate_flag = false;
 	 		}
 
 		}

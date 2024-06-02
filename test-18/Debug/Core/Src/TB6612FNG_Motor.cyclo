@@ -1,6 +1,6 @@
-../Core/Src/TB6612FNG_Motor.cpp:23:1:TB6612FNG_Motor::TB6612FNG_Motor(GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t)	3
-../Core/Src/TB6612FNG_Motor.cpp:64:1:TB6612FNG_Motor::~TB6612FNG_Motor()	1
-../Core/Src/TB6612FNG_Motor.cpp:64:1:virtual TB6612FNG_Motor::~TB6612FNG_Motor()	1
-../Core/Src/TB6612FNG_Motor.cpp:73:6:void TB6612FNG_Motor::set_duty(uint16_t, uint16_t)	6
-../Core/Src/TB6612FNG_Motor.cpp:105:6:void TB6612FNG_Motor::start()	1
-../Core/Src/TB6612FNG_Motor.cpp:113:6:void TB6612FNG_Motor::stop()	1
+../Core/Src/TB6612FNG_Motor.cpp:24:1:TB6612FNG_Motor::TB6612FNG_Motor(GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t, TIM_HandleTypeDef*, uint32_t, uint32_t, uint32_t)	3
+../Core/Src/TB6612FNG_Motor.cpp:65:1:TB6612FNG_Motor::~TB6612FNG_Motor()	1
+../Core/Src/TB6612FNG_Motor.cpp:65:1:virtual TB6612FNG_Motor::~TB6612FNG_Motor()	1
+../Core/Src/TB6612FNG_Motor.cpp:74:6:void TB6612FNG_Motor::set_duty(int16_t, int16_t)	7
+../Core/Src/TB6612FNG_Motor.cpp:113:6:void TB6612FNG_Motor::start()	1
+../Core/Src/TB6612FNG_Motor.cpp:121:6:void TB6612FNG_Motor::stop()	1
