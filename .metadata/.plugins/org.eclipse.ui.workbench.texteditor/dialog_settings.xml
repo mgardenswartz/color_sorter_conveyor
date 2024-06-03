@@ -9,6 +9,11 @@
 		<item key="selection" value=""/>
 		<list key="findhistory">
 			<item value="self."/>
+			<item value="pTimer"/>
+			<item value="huart2"/>
+			<item value="huart"/>
+			<item value="value_"/>
+			<item value="encoder_"/>
 			<item value="99"/>
 			<item value="new"/>
 			<item value="buffer"/>
@@ -18,14 +23,10 @@
 			<item value="50000"/>
 			<item value="reset"/>
 			<item value="pin_Set"/>
-			<item value="_pin_Set"/>
-			<item value="set"/>
-			<item value="p"/>
-			<item value="ps"/>
-			<item value="psc"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
+			<item value="timer_handle"/>
 			<item value="my_message"/>
 			<item value="COMPARE_VALUE"/>
 			<item value="RC_SIGNAL_PERIOD_US"/>
@@ -39,7 +40,6 @@
 			<item value="Receiver"/>
 			<item value="ReceiverDriver"/>
 			<item value="buffer"/>
-			<item value="invalid_hex"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

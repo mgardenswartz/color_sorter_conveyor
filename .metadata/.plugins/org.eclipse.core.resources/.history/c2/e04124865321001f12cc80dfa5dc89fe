@@ -1,0 +1,19 @@
+/**
+ * @file MotorControl.h
+ * @brief Header for MotorControl.cpp
+ * @author Max Gardenswartz
+ * @date Jun 2, 2024
+ */
+
+#ifndef SRC_MOTORCONTROL_H_
+#define SRC_MOTORCONTROL_H_
+
+#include "stm32f4xx_hal.h"
+
+class MotorControl {
+public:
+	MotorControl();
+	virtual ~MotorControl();
+};
+
+#endif /* SRC_MOTORCONTROL_H_ */

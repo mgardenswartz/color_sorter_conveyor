@@ -1,0 +1,9 @@
+../Core/Src/PololuEncoder.cpp:10:1:PololuEncoder::PololuEncoder(TIM_HandleTypeDef*, int16_t, float, uint8_t, bool)	3
+../Core/Src/PololuEncoder.cpp:48:6:void PololuEncoder::update()	4
+../Core/Src/PololuEncoder.cpp:74:6:void PololuEncoder::zero()	1
+../Core/Src/PololuEncoder.cpp:79:9:int32_t PololuEncoder::get_position()	1
+../Core/Src/PololuEncoder.cpp:84:9:int16_t PololuEncoder::get_delta()	1
+../Core/Src/PololuEncoder.cpp:89:7:float PololuEncoder::get_speed(uint32_t)	1
+../Core/Src/PololuEncoder.cpp:97:6:void PololuEncoder::debug_message(UART_HandleTypeDef*)	1
+../Core/Src/PololuEncoder.cpp:110:1:PololuEncoder::~PololuEncoder()	2
+../Core/Src/PololuEncoder.cpp:110:1:virtual PololuEncoder::~PololuEncoder()	1
