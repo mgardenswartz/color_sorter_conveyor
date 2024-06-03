@@ -80,7 +80,9 @@ RemoteControlControl* Throttle;
 RemoteControlControl* Steering;
 int16_t encoder_delta;
 uint16_t encoder_last_count;
+uint16_t encoder_count;
 int16_t encoder_position;
+int16_t debug_throttle_value = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_PIN) {
    // Your interrupt handling code here
@@ -113,6 +115,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					ThrottleChannel->callback();
+					debug_throttle_value = ThrottleChannel->value;
 					Throttle->update_motor();
 				}
 			}
@@ -121,18 +124,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	sprintf(my_message, "Timer interrupt triggered.\r\n");
-	HAL_UART_Transmit(&huart2, (uint8_t*)my_message, MESSAGE_LENGTH, HAL_MAX_DELAY);
-	if (htim->Instance == TIM5)
-	{
-		uint16_t encoder_count = TIM5->CNT;
-		encoder_delta = (int16_t) (encoder_last_count-encoder_count);
-		encoder_last_count = encoder_count;
-		encoder_position += encoder_delta;
-
-//		sprintf(my_message, "Encoder pos: %i.\r\n", position);
-//		HAL_UART_Transmit(&huart2, (uint8_t*)my_message, MESSAGE_LENGTH, HAL_MAX_DELAY);
-	}
+	//encoder_count = __HAL_TIM_GET_COUNTER(&htim5);
 }
 /* USER CODE END 0 */
 
@@ -235,28 +227,37 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  HAL_Delay(150);
-//	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%%, CH2: %*li%%.\r\n",
-//	                             VALUE_WIDTH, (long signed int)SteeringChannel->us_width, //value,
-//	                             VALUE_WIDTH, (long signed int)ThrottleChannel->us_width); //value);
-	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%% (%*li), CH2: %*li%% (%*li).\r\n",
-							  	 VALUE_WIDTH, (long signed int)SteeringChannel->value,
-								 VALUE_WIDTH, (long signed int)SteeringChannel->us_width,
-	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value,
-								 VALUE_WIDTH, (long signed int)ThrottleChannel->us_width);
-	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+//	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%% (%*li), CH2: %*li%% (%*li).\r\n",
+//							  	 VALUE_WIDTH, (long signed int)SteeringChannel->value,
+//								 VALUE_WIDTH, (long signed int)SteeringChannel->us_width,
+//	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value,
+//								 VALUE_WIDTH, (long signed int)ThrottleChannel->us_width);
+//	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 
-//		uint16_t count = TIM5->CNT;
-//		delta = (int16_t) (last_count-count);
-//		last_count = count;
-//		if (delta<0)
-//		{
-//			delta *= -1;
-//		}
-//		position += delta;
-//	  sprintf(my_message, "Encoder pos: %i.\r\n", position);
-//	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, MESSAGE_LENGTH, HAL_MAX_DELAY);
-//	  HAL_Delay(150);
+	   //Encoder
+	  	  encoder_count = __HAL_TIM_GET_COUNTER(&htim5);
+		encoder_delta = (int16_t) (encoder_count-encoder_last_count);
+		encoder_last_count = encoder_count;
+
+		// Handle timer overflow
+		uint16_t max_count = 0xffff;
+		uint16_t half_max_count = max_count/2;
+		int16_t neg_half_max_count = -half_max_count;
+		if (encoder_delta > half_max_count)
+		{
+			// We've overflowed in the negative direction
+			encoder_delta -= max_count + 1;
+		}
+		else if (encoder_delta < neg_half_max_count)
+		{
+		    // We've overflowed in the positive direciton.
+			encoder_delta += max_count + 1;
+			encoder_position += encoder_delta;
+		}
+       sprintf(my_message, "Encoder cnt: %i, pos: %i,delta %i.\r\n", encoder_count, encoder_position, encoder_delta);
+	  //sprintf(my_message, "Encoder cnt: %i\r\n", encoder_count);
+	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, MESSAGE_LENGTH, HAL_MAX_DELAY);
+	  HAL_Delay(150);
 
   }
   /* USER CODE END 3 */
@@ -328,7 +329,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = CPU_CLOCK_MHZ-1;
+  htim1.Init.Prescaler = 100-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 65535;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -451,7 +452,7 @@ static void MX_TIM5_Init(void)
   htim5.Instance = TIM5;
   htim5.Init.Prescaler = 0;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 65535;
+  htim5.Init.Period = 4294967295;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;

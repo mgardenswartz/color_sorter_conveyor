@@ -33,5 +33,6 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-14\ Debug/activeLaunchTarg
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-17\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-17\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-18\ Debug\ (1)/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-18\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-18\ Debug/activeLaunchMode=run
 org.eclipse.launchbar.core.descriptorType.default\:test-09\ Debug\ (1)/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

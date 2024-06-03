@@ -8,6 +8,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="self."/>
 			<item value="99"/>
 			<item value="new"/>
 			<item value="buffer"/>
@@ -22,15 +23,14 @@
 			<item value="p"/>
 			<item value="ps"/>
 			<item value="psc"/>
-			<item value="pre"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 			<item value="my_message"/>
 			<item value="COMPARE_VALUE"/>
 			<item value="RC_SIGNAL_PERIOD_US"/>
 			<item value="MESSAGE_LENGTH"/>
 			<item value="CPU_CLOCK_SPEED"/>
-			<item value=""/>
 			<item value="_value"/>
 			<item value="int16_t"/>
 			<item value="neutral"/>
