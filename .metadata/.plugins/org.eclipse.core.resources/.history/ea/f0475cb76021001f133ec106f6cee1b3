@@ -219,7 +219,7 @@ int main(void)
 		  (
 		  &htim5,
 		  20,
-		  488.3f,
+		  448.3f,
 		  16,
 		  false // true doesn't work yet!
 		  );

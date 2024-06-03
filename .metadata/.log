@@ -8031,3 +8031,9 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-06-02 21:18:21.280
 !MESSAGE Indexed 'test-18' (26 sources, 179 headers) in 4.09 sec: 16,372 declarations; 69,082 references; 1 unresolved inclusions; 92 syntax errors; 925 unresolved names (1.1%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2024-06-02 21:20:05.785
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 100000000; div: 50
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2024-06-02 21:20:49.420
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 2000000; CPU: 100000000; div: 50
