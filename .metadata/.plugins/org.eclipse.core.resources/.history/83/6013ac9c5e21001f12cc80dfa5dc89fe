@@ -1,4 +1,0 @@
-../Core/Src/RemoteControlControl.cpp:15:1:RemoteControlControl::RemoteControlControl(RCChannel*, TB6612FNG_Motor*)	1
-../Core/Src/RemoteControlControl.cpp:28:6:void RemoteControlControl::update_motor()	1
-../Core/Src/RemoteControlControl.cpp:40:1:RemoteControlControl::~RemoteControlControl()	5
-../Core/Src/RemoteControlControl.cpp:40:1:virtual RemoteControlControl::~RemoteControlControl()	1
