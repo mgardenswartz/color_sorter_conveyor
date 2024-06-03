@@ -1,0 +1,45 @@
+/**
+ * @file PololuEncoder.cpp
+ * @brief Driver for a Pololu two-channel gearmotor encoder
+ * @author Max Gardenswartz
+ * @date Jun 2, 2024
+ */
+
+#include "PololuEncoder.h"
+
+PololuEncoder::PololuEncoder(
+		TIM_HandleTypeDef* timer_handle,
+		uint8_t timer_bit_size
+		)
+		: timer_handle(timer_handle)
+{
+	HAL_TIM_Encoder_Start(timer_handle, TIM_CHANNEL_ALL);
+}
+
+void PololuEncoder::update()
+{
+	// Read encoder
+	count = __HAL_TIM_GET_COUNTER(timer_handle);
+	delta = (int16_t) (count-last_count);
+	last_count = count;
+
+	// Fix delta from timer overflow
+	uint16_t max_count = 0xffff;
+	uint16_t half_max_count = max_count/2;
+	int16_t neg_half_max_count = -half_max_count;
+	if (delta > half_max_count)
+	{
+		// We've overflowed in the negative direction
+		delta -= max_count + 1;
+	}
+	else if (delta < neg_half_max_count)
+	{
+	    // We've overflowed in the positive direciton.
+		delta += max_count + 1;
+	}
+}
+
+PololuEncoder::~PololuEncoder() {
+	// TODO Auto-generated destructor stub
+}
+

@@ -1,0 +1,17 @@
+/*
+ * PololuEncoder.h
+ *
+ *  Created on: Jun 2, 2024
+ *      Author: Max Gardenswartz
+ */
+
+#ifndef SRC_POLOLUENCODER_H_
+#define SRC_POLOLUENCODER_H_
+
+class PololuEncoder {
+public:
+	PololuEncoder();
+	virtual ~PololuEncoder();
+};
+
+#endif /* SRC_POLOLUENCODER_H_ */

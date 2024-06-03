@@ -1,3 +1,4 @@
+"./Core/Src/PololuEncoder.o"
 "./Core/Src/RCChannel.o"
 "./Core/Src/RemoteControlControl.o"
 "./Core/Src/TB6612FNG_Motor.o"

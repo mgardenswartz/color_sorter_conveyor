@@ -25,6 +25,8 @@
 #include "TB6612FNG_Motor.h"
 #include "RCChannel.h"
 #include "RemoteControlControl.h"
+#include "PololuEncoder.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,11 +80,8 @@ RCChannel* ThrottleChannel;
 RCChannel* SteeringChannel;
 RemoteControlControl* Throttle;
 RemoteControlControl* Steering;
-int16_t encoder_delta;
-uint16_t encoder_last_count;
-uint16_t encoder_count;
-int16_t encoder_position;
-int16_t debug_throttle_value = 0;
+PololuEncoder* My_Encoder;
+int16_t control_frequency_Hz = 8;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_PIN) {
    // Your interrupt handling code here
@@ -115,7 +114,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					ThrottleChannel->callback();
-					debug_throttle_value = ThrottleChannel->value;
 					Throttle->update_motor();
 				}
 			}
@@ -124,7 +122,10 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	//encoder_count = __HAL_TIM_GET_COUNTER(&htim5);
+	if (htim->Instance == TIM5)
+	{
+		My_Encoder->count = __HAL_TIM_GET_COUNTER(htim);
+	}
 }
 /* USER CODE END 0 */
 
@@ -214,8 +215,15 @@ int main(void)
 		  My_Motor
 		  );
 
+  My_Encoder = new PololuEncoder
+		  (
+		  &htim5,
+		  20,
+		  448.3f,
+		  16,
+		  false // true doesn't work yet!
+		  );
 
-  HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
   initialized = true;
   /* USER CODE END 2 */
 
@@ -233,32 +241,10 @@ int main(void)
 //	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value,
 //								 VALUE_WIDTH, (long signed int)ThrottleChannel->us_width);
 //	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
-
-	   //Encoder
-	  	  encoder_count = __HAL_TIM_GET_COUNTER(&htim5);
-		encoder_delta = (int16_t) (encoder_count-encoder_last_count);
-		encoder_last_count = encoder_count;
-
-		// Handle timer overflow
-		uint16_t max_count = 0xffff;
-		uint16_t half_max_count = max_count/2;
-		int16_t neg_half_max_count = -half_max_count;
-		if (encoder_delta > half_max_count)
-		{
-			// We've overflowed in the negative direction
-			encoder_delta -= max_count + 1;
-		}
-		else if (encoder_delta < neg_half_max_count)
-		{
-		    // We've overflowed in the positive direciton.
-			encoder_delta += max_count + 1;
-			encoder_position += encoder_delta;
-		}
-       sprintf(my_message, "Encoder cnt: %i, pos: %i,delta %i.\r\n", encoder_count, encoder_position, encoder_delta);
-	  //sprintf(my_message, "Encoder cnt: %i\r\n", encoder_count);
-	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, MESSAGE_LENGTH, HAL_MAX_DELAY);
-	  HAL_Delay(150);
-
+	  HAL_Delay(125);
+	  My_Encoder->update();
+	  My_Encoder->get_speed(control_frequency_Hz);
+	  My_Encoder->debug_message(&huart2);
   }
   /* USER CODE END 3 */
 }

@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Core/Src/PololuEncoder.cpp \
 ../Core/Src/RCChannel.cpp \
 ../Core/Src/RemoteControlControl.cpp \
 ../Core/Src/TB6612FNG_Motor.cpp \
@@ -25,6 +26,7 @@ C_DEPS += \
 ./Core/Src/system_stm32f4xx.d 
 
 OBJS += \
+./Core/Src/PololuEncoder.o \
 ./Core/Src/RCChannel.o \
 ./Core/Src/RemoteControlControl.o \
 ./Core/Src/TB6612FNG_Motor.o \
@@ -36,6 +38,7 @@ OBJS += \
 ./Core/Src/system_stm32f4xx.o 
 
 CPP_DEPS += \
+./Core/Src/PololuEncoder.d \
 ./Core/Src/RCChannel.d \
 ./Core/Src/RemoteControlControl.d \
 ./Core/Src/TB6612FNG_Motor.d \
@@ -51,7 +54,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/RCChannel.cyclo ./Core/Src/RCChannel.d ./Core/Src/RCChannel.o ./Core/Src/RCChannel.su ./Core/Src/RemoteControlControl.cyclo ./Core/Src/RemoteControlControl.d ./Core/Src/RemoteControlControl.o ./Core/Src/RemoteControlControl.su ./Core/Src/TB6612FNG_Motor.cyclo ./Core/Src/TB6612FNG_Motor.d ./Core/Src/TB6612FNG_Motor.o ./Core/Src/TB6612FNG_Motor.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/PololuEncoder.cyclo ./Core/Src/PololuEncoder.d ./Core/Src/PololuEncoder.o ./Core/Src/PololuEncoder.su ./Core/Src/RCChannel.cyclo ./Core/Src/RCChannel.d ./Core/Src/RCChannel.o ./Core/Src/RCChannel.su ./Core/Src/RemoteControlControl.cyclo ./Core/Src/RemoteControlControl.d ./Core/Src/RemoteControlControl.o ./Core/Src/RemoteControlControl.su ./Core/Src/TB6612FNG_Motor.cyclo ./Core/Src/TB6612FNG_Motor.d ./Core/Src/TB6612FNG_Motor.o ./Core/Src/TB6612FNG_Motor.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 

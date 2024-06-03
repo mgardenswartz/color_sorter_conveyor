@@ -1,0 +1,18 @@
+/**
+ * @file PololuEncoder.cpp
+ * @brief Driver for a Pololu two-channel gearmotor encoder
+ * @author Max Gardenswartz
+ * @date June 2, 2024
+ */
+
+#include "PololuEncoder.h"
+
+PololuEncoder::PololuEncoder() {
+	// TODO Auto-generated constructor stub
+
+}
+
+PololuEncoder::~PololuEncoder() {
+	// TODO Auto-generated destructor stub
+}
+

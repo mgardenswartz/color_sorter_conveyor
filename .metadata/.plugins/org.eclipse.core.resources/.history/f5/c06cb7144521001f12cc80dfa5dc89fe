@@ -1,0 +1,34 @@
+/**
+ * @file PololuEncoder.h
+ * @brief Header for PololuEncoder.cpp
+ * @author Max Gardenswartz
+ * @date Jun 2, 2024
+ */
+
+#ifndef SRC_POLOLUENCODER_H_
+#define SRC_POLOLUENCODER_H_
+
+#include "stm32f4xx_hal.h"
+
+class PololuEncoder {
+public:
+	PololuEncoder(
+			TIM_HandleTypeDef* timer_handle,
+			uint8_t timer_bit_size
+			);
+	virtual ~PololuEncoder();
+	void update();
+	void PololuEncoder::debug_message();
+
+	// Attributes
+	int16_t delta = 0;
+	uint16_t last_count = 0;
+	uint16_t count = 0;
+	int32_t position = 0;
+private:
+	// Attributes
+	TIM_HandleTypeDef* timer_handle;
+	uint8_t timer_bit_size;
+};
+
+#endif /* SRC_POLOLUENCODER_H_ */
