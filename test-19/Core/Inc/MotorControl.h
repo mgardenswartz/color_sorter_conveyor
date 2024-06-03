@@ -50,6 +50,7 @@ public:
     float error_slope;
     int16_t effort = 0;
     int16_t saturation_limit;
+    float SP;
 private:
 };
 

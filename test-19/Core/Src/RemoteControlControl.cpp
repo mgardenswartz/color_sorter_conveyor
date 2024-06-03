@@ -37,15 +37,15 @@ void RemoteControlControl::update_motor()
 	// Rescale to maximum speed.
 	if (value>=0)
 	{
-		setpoint = value*maximum_speed/(rc_channel->rescale_forward_magnitude);
+		setpoint = (float)value*(float)maximum_speed/((float)rc_channel->rescale_forward_magnitude);
 	}
 	else
 	{
-		setpoint = value*maximum_speed/(rc_channel->rescale_reverse_magnitude);
+		setpoint = (float)value*(float)maximum_speed/((float)rc_channel->rescale_reverse_magnitude);
 	}
 
 	// Update the controller
-	// motor_controller->run(setpoint);
+	motor_controller->run(setpoint);
 }
 
 /**

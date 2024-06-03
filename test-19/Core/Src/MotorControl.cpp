@@ -36,7 +36,8 @@ void MotorControl::debug_message(UART_HandleTypeDef* uart_handle)
 	#define VALUE_WIDTH 5
 	#define MESSAGE_LENGTH 100
 	char my_message[MESSAGE_LENGTH] = "";
-    int string_length = snprintf(my_message, MESSAGE_LENGTH, "Controller effort: %*i/%*i, Error: %*.3f RPM, Intgtr: %*.3f \r\n",
+    int string_length = snprintf(my_message, MESSAGE_LENGTH, "SP %*.2f, EFF: %*i/%*i, ERR: %*.3f RPM, Intgtr: %*.3f \r\n",
+    						 VALUE_WIDTH, SP,
                              VALUE_WIDTH, effort,
 							 VALUE_WIDTH, saturation_limit,
 							 VALUE_WIDTH, error,
@@ -47,6 +48,9 @@ void MotorControl::debug_message(UART_HandleTypeDef* uart_handle)
 
 void MotorControl::run(float setpoint)
 {
+	// Store to the class
+	SP = setpoint;
+
 	// Grab the latest data from the encoder.
 	encoder->update();
 	float process_value = encoder->get_speed(control_frequency_Hz);

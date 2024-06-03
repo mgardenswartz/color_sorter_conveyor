@@ -113,7 +113,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					ThrottleChannel->callback();
-					//Throttle->update_motor();
 				}
 			}
 		}
@@ -228,7 +227,6 @@ int main(void)
 		  30
 		  );
 
-  initialized = true;
   /* USER CODE END 2 */
 
   HAL_Delay(300);
@@ -237,6 +235,7 @@ int main(void)
   float setpoint = 0; // RPM
   My_Controller->run(setpoint);
   HAL_Delay(1000);
+  initialized = true;
 
   while (1)
   {
@@ -244,14 +243,15 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-//	  string_length = snprintf(my_message, MESSAGE_LENGTH, "Throttle: %*.3f RPM (%*li)\r\n",
-//								  VALUE_WIDTH+5, Throttle->setpoint,
-//								  VALUE_WIDTH+5, (long signed int)ThrottleChannel->value);
+	  string_length = snprintf(my_message, MESSAGE_LENGTH, "Throttle: %*.3f RPM (%*li)\r\n",
+								  VALUE_WIDTH+5, Throttle->setpoint,
+								  VALUE_WIDTH+5, (long signed int)ThrottleChannel->value);
 //	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
-	  float setpoint = 15; // RPM
-	  My_Controller->run(setpoint);
-	  HAL_Delay(1000/CONTROL_FREQUENCY_HZ);
+//	  float setpoint = 15; // RPM
+//	  My_Controller->run(setpoint);
+	  Throttle->update_motor();
 	  My_Controller->debug_message(&huart2);
+	  HAL_Delay(1000/CONTROL_FREQUENCY_HZ);
   }
   /* USER CODE END 3 */
 }
