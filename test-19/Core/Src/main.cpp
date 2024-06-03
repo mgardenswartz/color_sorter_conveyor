@@ -107,16 +107,13 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 				{
 					// Handle channel
 					SteeringChannel->callback();
-//					SteeringChannel->value = -500;
-//					SteeringChannel->us_width = 6969;
-					//Steering->update_motor();
 				}
 
 				if ( htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2)
 				{
 					// Handle channel
 					ThrottleChannel->callback();
-					Throttle->update_motor();
+					//Throttle->update_motor();
 				}
 			}
 		}
@@ -184,8 +181,8 @@ int main(void)
   		  1002,       // Calibrated full right
   		  1520,      // Calibrated neutral
   		  2035,      // Calibrated full left
-  		  100,       // New max positive
-		  100,       // New max negative (magnitude)
+  		  10000,       // New max positive
+		  10000,       // New max negative (magnitude)
 		  true     // Saturate if signal is over full? True by default. False good for debugging.
 		  );
 
@@ -200,22 +197,10 @@ int main(void)
 		  		  1056,  // Calibrated full reverse
 		  		  1533,  // Calibrated neutral
 		  		  2017,  // Calibrated full speed
-		  		  100,   // New max positive
-				  100,    // New max negative (magnitude)
+		  		  10000,   // New max positive
+				  10000,    // New max negative (magnitude)
 				  true  // Saturate if signal is over full? True by default. False good for debugging.
 		  	  	  );
-
-//  Steering = new RemoteControlControl
-//		  (
-//		  SteeringChannel,
-//		  My_Motor
-//		  );
-
-  Throttle = new RemoteControlControl
-		  (
-		  ThrottleChannel,
-		  My_Motor
-		  );
 
   My_Encoder = new PololuEncoder
 		  (
@@ -231,9 +216,16 @@ int main(void)
 		  My_Motor,
 		  My_Encoder,
 		  CONTROL_FREQUENCY_HZ,
-		  0.5f,
-		  0.0f,
+		  100.0f,
+		  50.0f,
 		  0.0f
+		  );
+
+  Throttle = new RemoteControlControl
+		  (
+		  ThrottleChannel,
+		  My_Controller,
+		  30
 		  );
 
   initialized = true;
@@ -247,11 +239,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-//	  string_length = snprintf(my_message, MESSAGE_LENGTH, "CH1: %*li%% (%*li), CH2: %*li%% (%*li).\r\n",
-//							  	 VALUE_WIDTH, (long signed int)SteeringChannel->value,
-//								 VALUE_WIDTH, (long signed int)SteeringChannel->us_width,
-//	                             VALUE_WIDTH, (long signed int)ThrottleChannel->value,
-//								 VALUE_WIDTH, (long signed int)ThrottleChannel->us_width);
+//	  string_length = snprintf(my_message, MESSAGE_LENGTH, "Throttle: %*.3f RPM (%*li)\r\n",
+//								  VALUE_WIDTH+5, Throttle->setpoint,
+//								  VALUE_WIDTH+5, (long signed int)ThrottleChannel->value);
 //	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 	  float setpoint = 15; // RPM
 	  My_Controller->run(setpoint);

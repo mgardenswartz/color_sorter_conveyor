@@ -36,9 +36,11 @@ void MotorControl::debug_message(UART_HandleTypeDef* uart_handle)
 	#define VALUE_WIDTH 5
 	#define MESSAGE_LENGTH 100
 	char my_message[MESSAGE_LENGTH] = "";
-    int string_length = snprintf(my_message, MESSAGE_LENGTH, "Controller effort: %*i/%*i.\r\n",
+    int string_length = snprintf(my_message, MESSAGE_LENGTH, "Controller effort: %*i/%*i, Error: %*.3f RPM, Intgtr: %*i \r\n",
                              VALUE_WIDTH, effort,
-							 VALUE_WIDTH, saturation_limit);
+							 VALUE_WIDTH, saturation_limit,
+							 VALUE_WIDTH, error,
+							 VALUE_WIDTH, running_error );
     HAL_UART_Transmit(uart_handle, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
     encoder->debug_message(uart_handle);
 }
@@ -60,10 +62,16 @@ int16_t MotorControl::get_effort_sat(
 					)
 {
 	// Calculating error for P control
-	error = process_value - setpoint; // RPM, a float
+	error = setpoint - process_value; // RPM, a float
 
 	// Calculating running error for I control
-	running_error += error/((float)control_frequency_Hz); // RPM*s, float arithmetic cast to an int
+	running_error += error/(control_frequency_Hz); // RPM*s, float arithmetic cast to an int
+
+//	// DEbug
+//	if (running_error>=8)
+//	{
+//		running_error += 0;
+//	}
 
 	// Calculating error slope for D control
 	error_slope = (error-last_error)*((float)control_frequency_Hz); // RPM/s, a float
@@ -71,7 +79,7 @@ int16_t MotorControl::get_effort_sat(
 
 	// Controller effort
     float P_effort = K_P*error;
-    float I_effort = K_I*(float)running_error;
+    float I_effort = K_I*running_error;
     float D_effort = K_D*error_slope;
     float effort_unsat = P_effort + I_effort + D_effort;
 

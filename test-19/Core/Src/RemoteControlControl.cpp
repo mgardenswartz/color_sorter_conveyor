@@ -12,13 +12,17 @@
  * @param rc_channel Pointer to the RCChannel object.
  * @param motor Pointer to a TB6612FNG_Motor object.
  */
-RemoteControlControl::RemoteControlControl(RCChannel* rc_channel, TB6612FNG_Motor* motor)
-	: rc_channel(rc_channel), motor(motor)
+RemoteControlControl::RemoteControlControl(
+		RCChannel* rc_channel,
+		MotorControl* motor_controller,
+		uint16_t maximum_speed)
+	: rc_channel(rc_channel),
+	  motor_controller(motor_controller),
+	  maximum_speed(maximum_speed)
 {
-	// Reassign the magnitudes for rescaling to prevent rounding error.
-	new_maximum_value = motor->auto_reload_value; // Maybe pTimer->Instance.PSC
-	rc_channel->rescale_forward_magnitude = new_maximum_value;
-	rc_channel->rescale_reverse_magnitude = new_maximum_value;
+//	// Reassign the magnitudes.
+//	rc_channel->rescale_forward_magnitude = maximum_speed;
+//	rc_channel->rescale_reverse_magnitude = maximum_speed;
 }
 
 /**
@@ -30,8 +34,18 @@ void RemoteControlControl::update_motor()
 	// Read from the remote control channel
 	int32_t value = rc_channel->value;
 
-	// Update the motor
-	motor->set_duty(value, new_maximum_value);
+	// Rescale to maximum speed.
+	if (value>=0)
+	{
+		setpoint = value*maximum_speed/(rc_channel->rescale_forward_magnitude);
+	}
+	else
+	{
+		setpoint = value*maximum_speed/(rc_channel->rescale_reverse_magnitude);
+	}
+
+	// Update the controller
+	// motor_controller->run(setpoint);
 }
 
 /**
@@ -47,10 +61,10 @@ RemoteControlControl::~RemoteControlControl()
 	}
 
 	// Deallocate memory for motor if it was dynamically allocated
-	if (motor != nullptr)
+	if (motor_controller != nullptr)
 	{
-		delete motor;
-		motor = nullptr; // Optional: Set to nullptr to avoid dangling pointers
+		delete motor_controller;
+		motor_controller = nullptr; // Optional: Set to nullptr to avoid dangling pointers
 	}
 }
 

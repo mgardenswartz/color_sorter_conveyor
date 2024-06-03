@@ -9,22 +9,28 @@
 #define SRC_REMOTECONTROLCONTROL_H_
 
 #include "stm32f4xx_hal.h"
-#include "TB6612FNG_Motor.h"
+#include "MotorControl.h"
 #include "RCChannel.h"
 
 class RemoteControlControl {
 	public:
-		RCChannel* rc_channel;
-		TB6612FNG_Motor* motor;
 
+		// Attributes
+		RCChannel* rc_channel;
+		MotorControl* motor_controller;
+		uint16_t maximum_speed;
+
+		// Other
+
+		float setpoint;
 		RemoteControlControl(
 				RCChannel* rc_channel,
-				TB6612FNG_Motor* motor
+				MotorControl* motor_controller,
+				uint16_t maximum_speed
 				);
 		void update_motor();
 		virtual ~RemoteControlControl();
 	private:
-		uint16_t new_maximum_value = 100;
 };
 
 #endif /* SRC_REMOTECONTROLCONTROL_H_ */
