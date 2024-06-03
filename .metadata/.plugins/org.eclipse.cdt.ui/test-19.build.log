@@ -1,31 +1,17 @@
-22:01:13 **** Incremental Build of configuration Debug for project test-19 ****
+22:40:49 **** Incremental Build of configuration Debug for project test-19 ****
 make -j16 all 
-arm-none-eabi-g++ "../Core/Src/MotorControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/MotorControl.d" -MT"Core/Src/MotorControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/MotorControl.o"
-arm-none-eabi-g++ "../Core/Src/RemoteControlControl.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/RemoteControlControl.d" -MT"Core/Src/RemoteControlControl.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/RemoteControlControl.o"
 arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/MotorControl.cpp: In member function 'void MotorControl::debug_message(UART_HandleTypeDef*)':
-../Core/Src/MotorControl.cpp:39:119: warning: format '%i' expects argument of type 'int', but argument 11 has type 'double' [-Wformat=]
-   39 |     int string_length = snprintf(my_message, MESSAGE_LENGTH, "Controller effort: %*i/%*i, Error: %*.3f RPM, Intgtr: %*i \r\n",
-      |                                                                                                                     ~~^
-      |                                                                                                                       |
-      |                                                                                                                       int
-      |                                                                                                                     %*f
-......
-   43 |                                                          VALUE_WIDTH, running_error );
-      |                                                                       ~~~~~~~~~~~~~                                    
-      |                                                                       |
-      |                                                                       double
 arm-none-eabi-g++ -o "test-19.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Max\OneDrive - Cal Poly\Documents\5 Hobbies\1 Coding\Mechatronics Codebases\ME 507 Codebase\test-19\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-19.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: test-19.elf
  
 arm-none-eabi-size  test-19.elf 
 arm-none-eabi-objdump -h -S test-19.elf  > "test-19.list"
    text	   data	    bss	    dec	    hex	filename
-  36712	    468	   2324	  39504	   9a50	test-19.elf
+  36744	    468	   2324	  39536	   9a70	test-19.elf
 Finished building: default.size.stdout
  
 Finished building: test-19.list
  
 
-22:01:14 Build Finished. 0 errors, 1 warnings. (took 1s.19ms)
+22:40:50 Build Finished. 0 errors, 0 warnings. (took 988ms)
 

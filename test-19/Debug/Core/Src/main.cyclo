@@ -2,10 +2,10 @@
 ../Core/Src/main.cpp:98:6:void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef*)	5
 ../Core/Src/main.cpp:122:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
 ../Core/Src/main.cpp:135:5:int main()	1
-../Core/Src/main.cpp:258:6:void SystemClock_Config()	3
-../Core/Src/main.cpp:305:13:void MX_TIM1_Init()	7
-../Core/Src/main.cpp:368:13:void MX_TIM2_Init()	6
-../Core/Src/main.cpp:427:13:void MX_TIM5_Init()	3
-../Core/Src/main.cpp:476:13:void MX_USART2_UART_Init()	2
-../Core/Src/main.cpp:509:13:void MX_GPIO_Init()	1
-../Core/Src/main.cpp:551:6:void Error_Handler()	1
+../Core/Src/main.cpp:263:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:310:13:void MX_TIM1_Init()	7
+../Core/Src/main.cpp:373:13:void MX_TIM2_Init()	6
+../Core/Src/main.cpp:432:13:void MX_TIM5_Init()	3
+../Core/Src/main.cpp:481:13:void MX_USART2_UART_Init()	2
+../Core/Src/main.cpp:514:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:556:6:void Error_Handler()	1

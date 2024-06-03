@@ -217,7 +217,7 @@ int main(void)
 		  My_Encoder,
 		  CONTROL_FREQUENCY_HZ,
 		  100.0f,
-		  50.0f,
+		  650.0f,
 		  0.0f
 		  );
 
@@ -231,8 +231,13 @@ int main(void)
   initialized = true;
   /* USER CODE END 2 */
 
+  HAL_Delay(300);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  float setpoint = 0; // RPM
+  My_Controller->run(setpoint);
+  HAL_Delay(1000);
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -245,8 +250,8 @@ int main(void)
 //	  HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 	  float setpoint = 15; // RPM
 	  My_Controller->run(setpoint);
-	  My_Controller->debug_message(&huart2);
 	  HAL_Delay(1000/CONTROL_FREQUENCY_HZ);
+	  My_Controller->debug_message(&huart2);
   }
   /* USER CODE END 3 */
 }
