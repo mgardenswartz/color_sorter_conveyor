@@ -1,0 +1,18 @@
+/*
+ * PololuServo.cpp
+ *
+ *  Created on: Jun 3, 2024
+ *      Author: Max
+ */
+
+#include "PololuServo.h"
+
+PololuServo::PololuServo() {
+	// TODO Auto-generated constructor stub
+
+}
+
+PololuServo::~PololuServo() {
+	// TODO Auto-generated destructor stub
+}
+

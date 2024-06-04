@@ -1,0 +1,18 @@
+/**
+ * @file PololuServo.cpp
+ * @brief Driver for a FEETECH FS90-FB
+ * @author Max Gardenswartz
+ * @date Jun 3, 2024
+ */
+
+#include "PololuServo.h"
+
+PololuServo::PololuServo() {
+	// TODO Auto-generated constructor stub
+
+}
+
+PololuServo::~PololuServo() {
+	// TODO Auto-generated destructor stub
+}
+

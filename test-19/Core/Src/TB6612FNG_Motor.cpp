@@ -53,7 +53,7 @@ TB6612FNG_Motor::TB6612FNG_Motor(
 
 	// Set the auto-reload value based on the CPU clock speed and the desired PWM frequency
 	auto_reload_value =( CPU_clock_speed_MHz * 1000000 / PWM_frequency_Hz ) - 1;
-	timer_handle->Init.AutoReloadPreload = auto_reload_value;
+	timer_handle->Instance->ARR = auto_reload_value;
 
 	// Start the PWM generation
 	start();

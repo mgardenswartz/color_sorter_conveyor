@@ -1,0 +1,17 @@
+/*
+ * PololuServo.h
+ *
+ *  Created on: Jun 3, 2024
+ *      Author: Max
+ */
+
+#ifndef SRC_POLOLUSERVO_H_
+#define SRC_POLOLUSERVO_H_
+
+class PololuServo {
+public:
+	PololuServo();
+	virtual ~PololuServo();
+};
+
+#endif /* SRC_POLOLUSERVO_H_ */
