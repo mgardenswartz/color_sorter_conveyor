@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="CPU_CLOCK_SPEED_MHZ"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="hal_uart_t"/>
+			<item value="hal_uart_"/>
 			<item value="CPU_CLOCK_MHZ"/>
 			<item value="self."/>
 			<item value="pTimer"/>
@@ -21,8 +23,6 @@
 			<item value="cpu_cl"/>
 			<item value="cpu"/>
 			<item value="696"/>
-			<item value="50000"/>
-			<item value="reset"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CPU_CLOCK_SPEED_MHZ"/>
@@ -43,10 +43,10 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="727"/>
-		<item key="DIALOG_Y_ORIGIN" value="463"/>
+		<item key="DIALOG_X_ORIGIN" value="850"/>
+		<item key="DIALOG_Y_ORIGIN" value="517"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="354"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
 	</section>
 </section>

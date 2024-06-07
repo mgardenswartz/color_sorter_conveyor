@@ -2,3 +2,15 @@
 1717387200360	Delete resource 'test-19/test-18 Debug.launch'
 1717387571217	Delete resource 'test-19/test-18'
 1717388156932	Delete resource 'test-18'
+1717720191352	Delete resource 'test-19/test-19'
+1717725592480	Delete resource 'test-21'
+1717726415086	Delete resource 'test-22/test-22.ioc'
+1717726508660	Delete resource 'test-22'
+1717726811098	Delete resource 'test-19/Drivers/VL53L0X'
+1717727049210	Delete resource 'test-22/test-22.ioc'
+1717727139382	Delete resource 'test-19/Drivers/VL53L0X'
+1717728379925	Delete resource 'test-22/Core/Src/cmain.c'
+1717728699770	Delete 6 resources
+1717728705701	Delete 5 resources
+1717728742568	Delete resource 'test-22/Core/Src/RCChannel.cpp'
+1717731337154	Delete resource 'test-19/Drivers/VL53L0X'
