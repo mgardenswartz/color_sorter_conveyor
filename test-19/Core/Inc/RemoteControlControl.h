@@ -29,6 +29,7 @@ class RemoteControlControl {
 				uint16_t maximum_speed
 				);
 		void update_motor();
+		void debug_message(UART_HandleTypeDef* uart_handle);
 		virtual ~RemoteControlControl();
 	private:
 };

@@ -1,4 +1,5 @@
 ../Core/Src/RemoteControlControl.cpp:15:1:RemoteControlControl::RemoteControlControl(RCChannel*, MotorControl*, uint16_t)	24	static
 ../Core/Src/RemoteControlControl.cpp:32:6:void RemoteControlControl::update_motor()	24	static
-../Core/Src/RemoteControlControl.cpp:54:1:RemoteControlControl::~RemoteControlControl()	16	static
-../Core/Src/RemoteControlControl.cpp:54:1:virtual RemoteControlControl::~RemoteControlControl()	16	static
+../Core/Src/RemoteControlControl.cpp:52:6:void RemoteControlControl::debug_message(UART_HandleTypeDef*)	136	static
+../Core/Src/RemoteControlControl.cpp:65:1:RemoteControlControl::~RemoteControlControl()	16	static
+../Core/Src/RemoteControlControl.cpp:65:1:virtual RemoteControlControl::~RemoteControlControl()	16	static

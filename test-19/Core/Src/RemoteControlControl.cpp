@@ -48,6 +48,17 @@ void RemoteControlControl::update_motor()
 	motor_controller->run(setpoint);
 }
 
+
+void RemoteControlControl::debug_message(UART_HandleTypeDef* uart_handle)
+{
+	char my_message[100] = "";
+	int string_length = snprintf(my_message, 100, "Throttle: %*.3f RPM (%*li)\r\n",
+									  10, setpoint,
+									  10, (long signed int)rc_channel->value);
+	HAL_UART_Transmit(uart_handle, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+}
+
+
 /**
  * @brief Destructs the RemoteControlControl object and releases any dynamically allocated resources.
  */
