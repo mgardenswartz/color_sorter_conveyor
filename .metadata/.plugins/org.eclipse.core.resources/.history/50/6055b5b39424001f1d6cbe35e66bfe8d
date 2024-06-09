@@ -1,0 +1,18 @@
+/*
+ * ColoredBlock.cpp
+ *
+ *  Created on: Jun 6, 2024
+ *      Author: Max
+ */
+
+#include "ColoredBlock.h"
+
+ColoredBlock::ColoredBlock() {
+	// TODO Auto-generated constructor stub
+
+}
+
+ColoredBlock::~ColoredBlock() {
+	// TODO Auto-generated destructor stub
+}
+

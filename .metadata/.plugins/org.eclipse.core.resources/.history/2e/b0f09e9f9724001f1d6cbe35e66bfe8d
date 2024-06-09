@@ -1,0 +1,22 @@
+/**
+ * @file ConveyorBelt.cpp
+ * @brief Conveyorr belt object to track objects.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#include "ConveyorBelt.h"
+
+ConveyorBelt::ConveyorBelt(PololuEncoder* encoder,
+						   uint8_t roller_diameter_mm)
+							: encoder(encoder),
+							  roller_diameter_mm(roller_diameter_mm)
+{
+
+}
+
+ConveyorBelt::~ConveyorBelt()
+{
+	// TODO Auto-generated destructor stub
+}
+

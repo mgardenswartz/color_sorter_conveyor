@@ -1,0 +1,4 @@
+../Core/Src/ColoredBlock.cpp:10:1:ColoredBlock::ColoredBlock()	1
+../Core/Src/ColoredBlock.cpp:15:6:void ColoredBlock::update_position()	1
+../Core/Src/ColoredBlock.cpp:20:1:ColoredBlock::~ColoredBlock()	1
+../Core/Src/ColoredBlock.cpp:20:1:virtual ColoredBlock::~ColoredBlock()	1

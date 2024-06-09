@@ -1,0 +1,5 @@
+../Core/Src/VL53L0X.cpp:10:1:VL53L0X::VL53L0X(I2C_HandleTypeDef*, uint8_t)	1
+../Core/Src/VL53L0X.cpp:19:10:uint16_t VL53L0X::read(UART_HandleTypeDef*, bool)	4
+../Core/Src/VL53L0X.cpp:45:6:void VL53L0X::initialize()	1
+../Core/Src/VL53L0X.cpp:66:1:VL53L0X::~VL53L0X()	1
+../Core/Src/VL53L0X.cpp:66:1:virtual VL53L0X::~VL53L0X()	1

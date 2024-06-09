@@ -6,8 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="Scan"/>
 		<list key="findhistory">
+			<item value="scan"/>
+			<item value="msg"/>
+			<item value="begin 4"/>
+			<item value="VL53L0X_Init"/>
+			<item value="defin"/>
+			<item value="define"/>
+			<item value="&quot;&quot;"/>
+			<item value="Mess"/>
 			<item value="hal_uart_t"/>
 			<item value="hal_uart_"/>
 			<item value="CPU_CLOCK_MHZ"/>
@@ -15,20 +23,12 @@
 			<item value="pTimer"/>
 			<item value="huart2"/>
 			<item value="huart"/>
-			<item value="value_"/>
-			<item value="encoder_"/>
-			<item value="99"/>
-			<item value="new"/>
-			<item value="buffer"/>
-			<item value="cpu_cl"/>
-			<item value="cpu"/>
-			<item value="696"/>
 		</list>
 		<list key="replacehistory">
+			<item value="my_message"/>
 			<item value="CPU_CLOCK_SPEED_MHZ"/>
 			<item value=""/>
 			<item value="timer_handle"/>
-			<item value="my_message"/>
 			<item value="COMPARE_VALUE"/>
 			<item value="RC_SIGNAL_PERIOD_US"/>
 			<item value="MESSAGE_LENGTH"/>
@@ -43,8 +43,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="850"/>
-		<item key="DIALOG_Y_ORIGIN" value="517"/>
+		<item key="DIALOG_X_ORIGIN" value="1090"/>
+		<item key="DIALOG_Y_ORIGIN" value="300"/>
 		<item key="DIALOG_WIDTH" value="318"/>
 		<item key="DIALOG_HEIGHT" value="354"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>

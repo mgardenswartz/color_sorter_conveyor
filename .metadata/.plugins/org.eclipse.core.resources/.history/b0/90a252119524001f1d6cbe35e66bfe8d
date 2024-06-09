@@ -1,0 +1,17 @@
+/*
+ * ColoredBlock.h
+ *
+ *  Created on: Jun 6, 2024
+ *      Author: Max
+ */
+
+#ifndef SRC_COLOREDBLOCK_H_
+#define SRC_COLOREDBLOCK_H_
+
+class ColoredBlock {
+public:
+	ColoredBlock();
+	virtual ~ColoredBlock();
+};
+
+#endif /* SRC_COLOREDBLOCK_H_ */

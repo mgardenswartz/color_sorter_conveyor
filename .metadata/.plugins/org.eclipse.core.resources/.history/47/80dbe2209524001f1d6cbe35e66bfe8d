@@ -1,0 +1,24 @@
+/**
+ * @file ColoredBlock.h
+ * @brief Header for VL53L0X.cpp.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#ifndef SRC_COLOREDBLOCK_H_
+#define SRC_COLOREDBLOCK_H_
+
+class ColoredBlock {
+public:
+	ColoredBlock(uint8_t roller_diameter);
+	virtual ~ColoredBlock();
+
+	// Values
+	float position = 0;
+
+	// Attributes
+	uint8_t roller_diamter = 1;
+
+};
+
+#endif /* SRC_COLOREDBLOCK_H_ */

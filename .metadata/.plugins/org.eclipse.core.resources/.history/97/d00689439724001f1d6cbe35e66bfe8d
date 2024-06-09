@@ -1,0 +1,22 @@
+/**
+ * @file ConveyorBelt.h
+ * @brief Header for ConveyorBelt.cpp.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#ifndef SRC_CONVEYORBELT_H_
+#define SRC_CONVEYORBELT_H_
+
+#include "PololuEncoder.h"
+
+class ConveyorBelt {
+public:
+	ConveyorBelt(PololuEncoder* encoder);
+	virtual ~ConveyorBelt();
+
+	// Attributes
+	PololuEncoder* encoder;
+};
+
+#endif /* SRC_CONVEYORBELT_H_ */

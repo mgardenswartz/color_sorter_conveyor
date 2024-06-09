@@ -1,0 +1,17 @@
+/*
+ * VL53L0X.h
+ *
+ *  Created on: Jun 6, 2024
+ *      Author: Max
+ */
+
+#ifndef SRC_VL53L0X_H_
+#define SRC_VL53L0X_H_
+
+class VL53L0X {
+public:
+	VL53L0X();
+	virtual ~VL53L0X();
+};
+
+#endif /* SRC_VL53L0X_H_ */

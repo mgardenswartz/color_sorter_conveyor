@@ -1,0 +1,17 @@
+/**
+ * @file VL53L0X.h
+ * @brief Header for VL53L0X.cpp.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#ifndef SRC_VL53L0X_H_
+#define SRC_VL53L0X_H_
+
+class VL53L0X {
+public:
+	VL53L0X();
+	virtual ~VL53L0X();
+};
+
+#endif /* SRC_VL53L0X_H_ */

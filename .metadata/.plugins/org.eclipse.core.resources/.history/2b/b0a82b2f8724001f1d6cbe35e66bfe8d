@@ -1,0 +1,39 @@
+/**
+ * @file VL53L0X.cpp
+ * @brief Pololu Time of Flight sensor driver.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#include "VL53L0X.h"
+
+VL53L0X::VL53L0X()
+{
+	// TODO Auto-generated constructor stub
+
+}
+
+void VL53L0X::read_and_print(UART_HandleTypeDef* uart_handle)
+{
+	VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
+
+	char my_message[MESSAGE_LENGTH] = "";
+	int string_length;
+	if(RangingData.RangeStatus == 0)
+	{
+		string_length = sprintf(my_message, "Measured distance: %i\r\n", RangingData.RangeMilliMeter);
+		HAL_UART_Transmit(uart_handle, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+	}
+	else
+	{
+		string_length = sprintf(my_message, "Error. \r\n");
+		HAL_UART_Transmit(uart_handle, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+	}
+}
+
+VL53L0X::~VL53L0X()
+{
+	// TODO Auto-generated destructor stub
+}
+
+

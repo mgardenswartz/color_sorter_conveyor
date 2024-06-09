@@ -1,0 +1,35 @@
+/**
+ * @file ConveyorBelt.cpp
+ * @brief Conveyorr belt object to track objects.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#include "ConveyorBelt.h"
+
+ConveyorBelt::ConveyorBelt(PololuEncoder* encoder,
+						   uint8_t roller_diameter_mm)
+							: encoder(encoder),
+							  roller_diameter_mm(roller_diameter_mm)
+{
+
+}
+
+void ConveyorBelt::get_position()
+{
+	encoder->update();
+	int32_t encoder_count = encoder->get_position();
+	float revolutions = encoder_count/(encoder->gear_ratio * (float)encoder->CPR);
+
+}
+
+void ConveyorBelt::debug_message(UART_HandleTypeDef* uart_handle)
+{
+
+}
+
+ConveyorBelt::~ConveyorBelt()
+{
+	// TODO Auto-generated destructor stub
+}
+
