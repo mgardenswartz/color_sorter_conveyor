@@ -12,6 +12,7 @@ CPP_SRCS += \
 ../Core/Src/PololuServo.cpp \
 ../Core/Src/RCChannel.cpp \
 ../Core/Src/RemoteControlControl.cpp \
+../Core/Src/SparkFunAPDS9960.cpp \
 ../Core/Src/TB6612FNG_Motor.cpp \
 ../Core/Src/VL53L0X.cpp \
 ../Core/Src/main.cpp 
@@ -38,6 +39,7 @@ OBJS += \
 ./Core/Src/PololuServo.o \
 ./Core/Src/RCChannel.o \
 ./Core/Src/RemoteControlControl.o \
+./Core/Src/SparkFunAPDS9960.o \
 ./Core/Src/TB6612FNG_Motor.o \
 ./Core/Src/VL53L0X.o \
 ./Core/Src/main.o \
@@ -55,6 +57,7 @@ CPP_DEPS += \
 ./Core/Src/PololuServo.d \
 ./Core/Src/RCChannel.d \
 ./Core/Src/RemoteControlControl.d \
+./Core/Src/SparkFunAPDS9960.d \
 ./Core/Src/TB6612FNG_Motor.d \
 ./Core/Src/VL53L0X.d \
 ./Core/Src/main.d 
@@ -69,7 +72,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/ColoredBlock.cyclo ./Core/Src/ColoredBlock.d ./Core/Src/ColoredBlock.o ./Core/Src/ColoredBlock.su ./Core/Src/ConveyorBelt.cyclo ./Core/Src/ConveyorBelt.d ./Core/Src/ConveyorBelt.o ./Core/Src/ConveyorBelt.su ./Core/Src/MotorControl.cyclo ./Core/Src/MotorControl.d ./Core/Src/MotorControl.o ./Core/Src/MotorControl.su ./Core/Src/PololuEncoder.cyclo ./Core/Src/PololuEncoder.d ./Core/Src/PololuEncoder.o ./Core/Src/PololuEncoder.su ./Core/Src/PololuServo.cyclo ./Core/Src/PololuServo.d ./Core/Src/PololuServo.o ./Core/Src/PololuServo.su ./Core/Src/RCChannel.cyclo ./Core/Src/RCChannel.d ./Core/Src/RCChannel.o ./Core/Src/RCChannel.su ./Core/Src/RemoteControlControl.cyclo ./Core/Src/RemoteControlControl.d ./Core/Src/RemoteControlControl.o ./Core/Src/RemoteControlControl.su ./Core/Src/TB6612FNG_Motor.cyclo ./Core/Src/TB6612FNG_Motor.d ./Core/Src/TB6612FNG_Motor.o ./Core/Src/TB6612FNG_Motor.su ./Core/Src/VL53L0X.cyclo ./Core/Src/VL53L0X.d ./Core/Src/VL53L0X.o ./Core/Src/VL53L0X.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/ColoredBlock.cyclo ./Core/Src/ColoredBlock.d ./Core/Src/ColoredBlock.o ./Core/Src/ColoredBlock.su ./Core/Src/ConveyorBelt.cyclo ./Core/Src/ConveyorBelt.d ./Core/Src/ConveyorBelt.o ./Core/Src/ConveyorBelt.su ./Core/Src/MotorControl.cyclo ./Core/Src/MotorControl.d ./Core/Src/MotorControl.o ./Core/Src/MotorControl.su ./Core/Src/PololuEncoder.cyclo ./Core/Src/PololuEncoder.d ./Core/Src/PololuEncoder.o ./Core/Src/PololuEncoder.su ./Core/Src/PololuServo.cyclo ./Core/Src/PololuServo.d ./Core/Src/PololuServo.o ./Core/Src/PololuServo.su ./Core/Src/RCChannel.cyclo ./Core/Src/RCChannel.d ./Core/Src/RCChannel.o ./Core/Src/RCChannel.su ./Core/Src/RemoteControlControl.cyclo ./Core/Src/RemoteControlControl.d ./Core/Src/RemoteControlControl.o ./Core/Src/RemoteControlControl.su ./Core/Src/SparkFunAPDS9960.cyclo ./Core/Src/SparkFunAPDS9960.d ./Core/Src/SparkFunAPDS9960.o ./Core/Src/SparkFunAPDS9960.su ./Core/Src/TB6612FNG_Motor.cyclo ./Core/Src/TB6612FNG_Motor.d ./Core/Src/TB6612FNG_Motor.o ./Core/Src/TB6612FNG_Motor.su ./Core/Src/VL53L0X.cyclo ./Core/Src/VL53L0X.d ./Core/Src/VL53L0X.o ./Core/Src/VL53L0X.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32f4xx_hal_msp.cyclo ./Core/Src/stm32f4xx_hal_msp.d ./Core/Src/stm32f4xx_hal_msp.o ./Core/Src/stm32f4xx_hal_msp.su ./Core/Src/stm32f4xx_it.cyclo ./Core/Src/stm32f4xx_it.d ./Core/Src/stm32f4xx_it.o ./Core/Src/stm32f4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 

@@ -1,0 +1,400 @@
+/*
+ * SparkFunAPDS9960.cpp
+ *
+ *  Created on: Jun 8, 2024
+ *      Author: Max
+ */
+
+#include "SparkFunAPDS9960.h"
+
+
+SparkFun_APDS9960::SparkFun_APDS9960() {
+    // Initialize member variables here
+}
+
+SparkFun_APDS9960::~SparkFun_APDS9960() {
+    // Destructor logic here
+}
+
+bool SparkFun_APDS9960::init() {
+    uint8_t id;
+
+    /* Read ID register and check against known values for APDS-9960 */
+    if (!wireReadDataByte(APDS9960_ID, id)) {
+        return false;
+    }
+    if (!(id == APDS9960_ID_1 || id == APDS9960_ID_2)) {
+        return false;
+    }
+
+    /* Set ENABLE register to 0 (disable all features) */
+    if (!setMode(ALL, OFF)) {
+        return false;
+    }
+
+    /* Set default values for ambient light and proximity registers */
+    if (!wireWriteDataByte(APDS9960_ATIME, DEFAULT_ATIME)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_WTIME, DEFAULT_WTIME)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_PPULSE, DEFAULT_PROX_PPULSE)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_POFFSET_UR, DEFAULT_POFFSET_UR)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_POFFSET_DL, DEFAULT_POFFSET_DL)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_CONFIG1, DEFAULT_CONFIG1)) {
+        return false;
+    }
+    if (!setLEDDrive(DEFAULT_LDRIVE)) {
+        return false;
+    }
+    if (!setProximityGain(DEFAULT_PGAIN)) {
+        return false;
+    }
+    if (!setAmbientLightGain(DEFAULT_AGAIN)) {
+        return false;
+    }
+    if (!setProxIntLowThresh(DEFAULT_PILT)) {
+        return false;
+    }
+    if (!setProxIntHighThresh(DEFAULT_PIHT)) {
+        return false;
+    }
+    if (!setLightIntLowThreshold(DEFAULT_AILT)) {
+        return false;
+    }
+    if (!setLightIntHighThreshold(DEFAULT_AIHT)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_PERS, DEFAULT_PERS)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_CONFIG2, DEFAULT_CONFIG2)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_CONFIG3, DEFAULT_CONFIG3)) {
+        return false;
+    }
+
+    /* Set default values for gesture sense registers */
+    if (!setGestureEnterThresh(DEFAULT_GPENTH)) {
+        return false;
+    }
+    if (!setGestureExitThresh(DEFAULT_GEXTH)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GCONF1, DEFAULT_GCONF1)) {
+        return false;
+    }
+    if (!setGestureGain(DEFAULT_GGAIN)) {
+        return false;
+    }
+    if (!setGestureLEDDrive(DEFAULT_GLDRIVE)) {
+        return false;
+    }
+    if (!setGestureWaitTime(DEFAULT_GWTIME)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GOFFSET_U, DEFAULT_GOFFSET)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GOFFSET_D, DEFAULT_GOFFSET)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GOFFSET_L, DEFAULT_GOFFSET)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GOFFSET_R, DEFAULT_GOFFSET)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GPULSE, DEFAULT_GPULSE)) {
+        return false;
+    }
+    if (!wireWriteDataByte(APDS9960_GCONF3, DEFAULT_GCONF3)) {
+        return false;
+    }
+    if (!setGestureIntEnable(DEFAULT_GIEN)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::wireReadDataByte(uint8_t reg, uint8_t &val) {
+    uint8_t data;
+    if (HAL_I2C_Mem_Read(&hi2c1, APDS9960_I2C_ADDR << 1, reg, I2C_MEMADD_SIZE_8BIT, &data, 1, HAL_MAX_DELAY) != HAL_OK) {
+        int string_len = sprintf(my_message, "Error reading register 0x%02X\r\n", reg);
+        HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_len, HAL_MAX_DELAY);
+        return false;
+    }
+    val = data;
+    return true;
+}
+
+bool SparkFun_APDS9960::wireWriteDataByte(uint8_t reg, uint8_t val) {
+    if (HAL_I2C_Mem_Write(&hi2c1, APDS9960_I2C_ADDR << 1, reg, I2C_MEMADD_SIZE_8BIT, &val, 1, HAL_MAX_DELAY) != HAL_OK) {
+        int string_len = sprintf(my_message, "Error writing register 0x%02X\r\n", reg);
+        HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_len, HAL_MAX_DELAY);
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setMode(uint8_t mode, uint8_t enable) {
+    uint8_t reg_val;
+
+    /* Read current ENABLE register */
+    if (!wireReadDataByte(0x80, reg_val)) {
+        return false;
+    }
+
+    /* Change bit(s) in ENABLE register */
+    enable = enable & 0x01;
+    if (mode <= 6) {
+        reg_val = reg_val & ~(1 << mode);
+        reg_val = reg_val | (enable << mode);
+    } else if (mode == 7) {
+        reg_val = enable ? 0x7F : 0x00;
+    }
+
+    /* Write value back to ENABLE register */
+    if (!wireWriteDataByte(0x80, reg_val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setLEDDrive(uint8_t drive) {
+    uint8_t val;
+
+    /* Read value from CONTROL register */
+    if (!wireReadDataByte(0x8F, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    drive &= 0x03;
+    val &= 0xFC;
+    val |= drive;
+
+    /* Write register value back to CONTROL register */
+    if (!wireWriteDataByte(0x8F, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setProximityGain(uint8_t gain) {
+    uint8_t val;
+
+    /* Read value from CONTROL register */
+    if (!wireReadDataByte(0x8F, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    gain &= 0x03;
+    val &= 0xF3;
+    val |= (gain << 2);
+
+    /* Write register value back to CONTROL register */
+    if (!wireWriteDataByte(0x8F, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setAmbientLightGain(uint8_t gain) {
+    uint8_t val;
+
+    /* Read value from CONTROL register */
+    if (!wireReadDataByte(0x8F, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    gain &= 0x03;
+    val &= 0xCF;
+    val |= (gain << 4);
+
+    /* Write register value back to CONTROL register */
+    if (!wireWriteDataByte(0x8F, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setProxIntLowThresh(uint8_t threshold) {
+    if (!wireWriteDataByte(0x89, threshold)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setProxIntHighThresh(uint8_t threshold) {
+    if (!wireWriteDataByte(0x8B, threshold)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setLightIntLowThreshold(uint16_t threshold) {
+    uint8_t lowByte = threshold & 0xFF;
+    uint8_t highByte = (threshold >> 8) & 0xFF;
+
+    if (!wireWriteDataByte(0x84, lowByte)) {
+        return false;
+    }
+    if (!wireWriteDataByte(0x85, highByte)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setLightIntHighThreshold(uint16_t threshold) {
+    uint8_t lowByte = threshold & 0xFF;
+    uint8_t highByte = (threshold >> 8) & 0xFF;
+
+    if (!wireWriteDataByte(0x86, lowByte)) {
+        return false;
+    }
+    if (!wireWriteDataByte(0x87, highByte)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureEnterThresh(uint8_t threshold) {
+    if (!wireWriteDataByte(0xA0, threshold)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureExitThresh(uint8_t threshold) {
+    if (!wireWriteDataByte(0xA1, threshold)) {
+        return false;
+    }
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureGain(uint8_t gain) {
+    uint8_t val;
+
+    /* Read value from GCONF2 register */
+    if (!wireReadDataByte(0xA3, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    gain &= 0x03;
+    val &= 0xF3;
+    val |= (gain << 2);
+
+    /* Write register value back to GCONF2 register */
+    if (!wireWriteDataByte(0xA3, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureLEDDrive(uint8_t drive) {
+    uint8_t val;
+
+    /* Read value from GCONF2 register */
+    if (!wireReadDataByte(0xA3, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    drive &= 0x03;
+    val &= 0xFC;
+    val |= drive;
+
+    /* Write register value back to GCONF2 register */
+    if (!wireWriteDataByte(0xA3, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureWaitTime(uint8_t time) {
+    uint8_t val;
+
+    /* Read value from GCONF2 register */
+    if (!wireReadDataByte(0xA3, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    time &= 0x07;
+    val &= 0xF8;
+    val |= time;
+
+    /* Write register value back to GCONF2 register */
+    if (!wireWriteDataByte(0xA3, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+bool SparkFun_APDS9960::setGestureIntEnable(uint8_t enable) {
+    uint8_t val;
+
+    /* Read value from GCONF4 register */
+    if (!wireReadDataByte(0xAB, val)) {
+        return false;
+    }
+
+    /* Set bits in register to given value */
+    enable &= 0x01;
+    val &= 0xFE;
+    val |= enable;
+
+    /* Write register value back to GCONF4 register */
+    if (!wireWriteDataByte(0xAB, val)) {
+        return false;
+    }
+
+    return true;
+}
+
+
+
+// Maybe broken
+bool SparkFun_APDS9960::readColor(uint16_t &r, uint16_t &g, uint16_t &b, uint16_t &c) {
+    uint8_t buffer[8];
+
+    if (!wireReadDataBlock(0x94, buffer, 8)) {
+        return false;
+    }
+
+    c = (buffer[1] << 8) | buffer[0];
+    r = (buffer[3] << 8) | buffer[2];
+    g = (buffer[5] << 8) | buffer[4];
+    b = (buffer[7] << 8) | buffer[6];
+
+    return true;
+}
+
+bool SparkFun_APDS9960::wireReadDataBlock(uint8_t reg, uint8_t *val, unsigned int len) {
+    if (HAL_I2C_Mem_Read(&hi2c1, APDS9960_I2C_ADDR << 1, reg, I2C_MEMADD_SIZE_8BIT, val, len, HAL_MAX_DELAY) != HAL_OK) {
+        int string_length = sprintf(my_message, "Error reading register block starting at 0x%02X\r\n", reg);
+        HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+        return false;
+    }
+    return true;
+}

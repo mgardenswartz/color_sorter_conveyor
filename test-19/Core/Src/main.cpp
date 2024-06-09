@@ -31,6 +31,8 @@
 #include "MotorControl.h"
 #include "PololuServo.h"
 #include "VL53L0X.h"
+#include "SparkFunAPDS9960.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,6 +79,8 @@ PololuServo* My_Servo;
 VL53L0X_RangingMeasurementData_t RangingData;
 VL53L0X_Dev_t vl53l0x_c; // center module
 VL53L0X_DEV Dev = &vl53l0x_c;
+
+SparkFun_APDS9960* My_Color_Sensor;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -278,15 +282,58 @@ int main(void)
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
   VL53L0X_Init();
 
+  // Color sensor
+  My_Color_Sensor = new SparkFun_APDS9960(&hi2c1);
+  I2C_Scan(&huart2);
+
+  if (My_Color_Sensor->init()) {
+      int string_length = sprintf(my_message, "My_Color_Sensor-9960 initialization complete\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  } else {
+      int string_length = sprintf(my_message, "Something went wrong during My_Color_Sensor-9960 init!\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  }
+
+  I2C_Scan(&huart2);
+  if (My_Color_Sensor->disableProximitySensor()) {
+      int string_length = sprintf(my_message, "Proximity sensor disabled successfully\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  } else {
+      int string_length = sprintf(my_message, "Failed to disable proximity sensor\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  }
+
+  if (My_Color_Sensor->disableGestureSensor()) {
+      int string_length = sprintf(my_message, "Gesture sensor disabled successfully\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  } else {
+      int string_length = sprintf(my_message, "Failed to disable gesture sensor\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  }
+
+  if (My_Color_Sensor->enableLightSensor()) {
+      int string_length = sprintf(my_message, "Light sensor enabled successfully\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  } else {
+      int string_length = sprintf(my_message, "Failed to enable light sensor\r\n");
+      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+  }
+  I2C_Scan(&huart2);
+
+  uint16_t ambient_light, red_light, green_light, blue_light;
+
 
   uint8_t task = 0; // Start on task 0
   int number_of_states = 5;
+
+  number_of_states += 1;
   uint32_t last_tick_state[number_of_states] = {0};
   uint16_t task_frequencies[number_of_states] = {0};
   task_frequencies[1] = 1; // Hz
   task_frequencies[2] = CONTROL_FREQUENCY_HZ; // Hz
   task_frequencies[3] = 2; // Hz
-  task_frequencies[4] = 5;
+  task_frequencies[4] = 4; // Hz
+  task_frequencies[5] = 2; // Hz
   uint16_t task_periods[number_of_states] = {0};
 
   // Loop to calculate periods based on frequencies
@@ -300,8 +347,8 @@ int main(void)
 
   uint8_t task_1_state = 1;
   uint16_t range_reading = -1;
-  uint16_t block_range_mm = 128;
-  bool ready_for_new_block = true;
+  uint16_t block_range_mm = 50; //Threshold
+  // bool ready_for_new_block = true;
 
   /* USER CODE END 2 */
 
@@ -358,10 +405,10 @@ int main(void)
 
 				  VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
 					if(RangingData.RangeStatus == 0) {
-						string_length = sprintf(my_message, "Measured distance: %i\n\r", RangingData.RangeMilliMeter);
+						int string_length = sprintf(my_message, "Measured distance: %i\n\r", RangingData.RangeMilliMeter);
 						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 					} else {
-						string_length = sprintf(my_message, "Error\r\n");
+						int string_length = sprintf(my_message, "Error\r\n");
 						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
 					}
 			  }
@@ -370,10 +417,34 @@ int main(void)
 			  task = 4;
 			  break;
 
-	  	  case 4: // Debug messages
-	  		  if (current_tick - last_tick_state[4] >= task_periods[4])
-	  		  {
+	  	  case 4:
+	  		 if (current_tick - last_tick_state[4] >= task_periods[4])
+	  		 {
 	  			  last_tick_state[4] = current_tick;
+	  			  // Code goes here
+	  			  //I2C_Scan(&huart2);
+					bool success = My_Color_Sensor->readAmbientLight(ambient_light) &&
+								   My_Color_Sensor->readRedLight(red_light) &&
+								   My_Color_Sensor->readGreenLight(green_light) &&
+								   My_Color_Sensor->readBlueLight(blue_light);
+
+					if (success) {
+						int string_length = sprintf(my_message, "Ambient: %u, Red: %u, Green: %u, Blue: %u\r\n", ambient_light, red_light, green_light, blue_light);
+						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+					} else {
+						int string_length = sprintf(my_message, "Error reading light values!\r\n");
+						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+					}
+	  		 }
+
+	  		 // State changes
+	  		 task = 5;
+	  		 break;
+
+	  	  case 5: // Debug messages
+	  		  if (current_tick - last_tick_state[5] >= task_periods[5])
+	  		  {
+	  			  last_tick_state[5] = current_tick;
 	  			  // My_Controller->debug_message(&huart2);
 	  			  // Throttle->debug_message(&huart2);
 
@@ -831,6 +902,7 @@ static void VL53L0X_Init(void) {
 	VL53L0X_SetVcselPulsePeriod(Dev, VL53L0X_VCSEL_PERIOD_PRE_RANGE, 18);
 	VL53L0X_SetVcselPulsePeriod(Dev, VL53L0X_VCSEL_PERIOD_FINAL_RANGE, 14);
 }
+
 /* USER CODE END 4 */
 
 /**

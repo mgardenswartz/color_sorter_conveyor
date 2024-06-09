@@ -5,6 +5,7 @@
 "./Core/Src/PololuServo.o"
 "./Core/Src/RCChannel.o"
 "./Core/Src/RemoteControlControl.o"
+"./Core/Src/SparkFunAPDS9960.o"
 "./Core/Src/TB6612FNG_Motor.o"
 "./Core/Src/VL53L0X.o"
 "./Core/Src/main.o"

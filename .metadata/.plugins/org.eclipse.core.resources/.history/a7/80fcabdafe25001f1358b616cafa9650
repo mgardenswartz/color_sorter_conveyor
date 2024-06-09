@@ -1,0 +1,17 @@
+/*
+ * SparkFunAPDS9960.h
+ *
+ *  Created on: Jun 8, 2024
+ *      Author: Max
+ */
+
+#ifndef SRC_SPARKFUNAPDS9960_H_
+#define SRC_SPARKFUNAPDS9960_H_
+
+class SparkFun_APDS9960 {
+public:
+	SparkFun_APDS9960();
+	virtual ~SparkFun_APDS9960();
+};
+
+#endif /* SRC_SPARKFUNAPDS9960_H_ */

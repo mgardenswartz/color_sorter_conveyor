@@ -1,0 +1,17 @@
+/**
+ * @file SparkFun_APDS9960.h
+ * @brief Header for SparkFun_APDS9960.cpp
+ * @author Max Gardenswartz
+ * @date Jun 8, 2024
+ */
+
+#ifndef SRC_SPARKFUNAPDS9960_H_
+#define SRC_SPARKFUNAPDS9960_H_
+
+class SparkFun_APDS9960 {
+public:
+	SparkFun_APDS9960();
+	virtual ~SparkFun_APDS9960();
+};
+
+#endif /* SRC_SPARKFUNAPDS9960_H_ */

@@ -1,0 +1,18 @@
+/*
+ * SparkFunAPDS9960.cpp
+ *
+ *  Created on: Jun 8, 2024
+ *      Author: Max
+ */
+
+#include "SparkFunAPDS9960.h"
+
+SparkFun_APDS9960::SparkFun_APDS9960() {
+	// TODO Auto-generated constructor stub
+
+}
+
+SparkFun_APDS9960::~SparkFun_APDS9960() {
+	// TODO Auto-generated destructor stub
+}
+

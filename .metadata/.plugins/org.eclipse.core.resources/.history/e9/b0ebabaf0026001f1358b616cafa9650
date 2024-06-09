@@ -1,0 +1,102 @@
+/**
+ * @file SparkFun_APDS9960.h
+ * @brief Header for SparkFun_APDS9960.cpp
+ * @author Max Gardenswartz
+ * @date Jun 8, 2024
+ */
+
+#ifndef SRC_SPARKFUNAPDS9960_H_
+#define SRC_SPARKFUNAPDS9960_H_
+
+#include "stm32f4xx_hal.h"
+#include <stdio.h>
+#include "defines.h"
+
+// APDS-9960 I2C Address
+#define APDS9960_I2C_ADDR 0x39
+
+// APDS-9960 Register Addresses
+#define APDS9960_ID 0x92
+#define APDS9960_ATIME 0x81
+#define APDS9960_WTIME 0x83
+#define APDS9960_PPULSE 0x8E
+#define APDS9960_POFFSET_UR 0x9D
+#define APDS9960_POFFSET_DL 0x9E
+#define APDS9960_CONFIG1 0x8D
+#define APDS9960_PERS 0x8C
+#define APDS9960_CONFIG2 0x90
+#define APDS9960_CONFIG3 0x9F
+#define APDS9960_GCONF1 0xA2
+#define APDS9960_GCONF3 0xAA
+#define APDS9960_GPULSE 0xA6
+#define APDS9960_GOFFSET_U 0xA4
+#define APDS9960_GOFFSET_D 0xA5
+#define APDS9960_GOFFSET_L 0xA7
+#define APDS9960_GOFFSET_R 0xA9
+
+// Default values for registers
+#define DEFAULT_ATIME 0xDB
+#define DEFAULT_WTIME 0xF6
+#define DEFAULT_PROX_PPULSE 0x87
+#define DEFAULT_POFFSET_UR 0x00
+#define DEFAULT_POFFSET_DL 0x00
+#define DEFAULT_CONFIG1 0x60
+#define DEFAULT_PERS 0x11
+#define DEFAULT_CONFIG2 0x01
+#define DEFAULT_CONFIG3 0x00
+#define DEFAULT_GPENTH 40
+#define DEFAULT_GEXTH 30
+#define DEFAULT_GCONF1 0x40
+#define DEFAULT_GPULSE 0xC9
+#define DEFAULT_GOFFSET 0x00
+#define DEFAULT_GCONF3 0x00
+#define DEFAULT_GWTIME 0x02
+#define DEFAULT_GGAIN 0x02
+#define DEFAULT_GLDRIVE 0x01
+#define DEFAULT_GIEN 0x01
+#define DEFAULT_LDRIVE 0x00
+#define DEFAULT_PGAIN 0x02
+#define DEFAULT_AGAIN 0x01
+#define DEFAULT_PILT 0
+#define DEFAULT_PIHT 50
+#define DEFAULT_AILT 0xFFFF
+#define DEFAULT_AIHT 0
+
+#define ALL 7
+#define OFF 0
+
+#define DIR_NONE 0
+#define APDS9960_ID_1 0xAB
+#define APDS9960_ID_2 0x9C
+
+extern I2C_HandleTypeDef hi2c1;
+extern UART_HandleTypeDef huart2;
+
+class SparkFun_APDS9960 {
+public:
+    SparkFun_APDS9960();
+    ~SparkFun_APDS9960();
+    bool init();
+    // Add other public methods here
+
+private:
+    // Add private variables and methods here
+    bool wireReadDataByte(uint8_t reg, uint8_t &val);
+    bool wireWriteDataByte(uint8_t reg, uint8_t val);
+    bool setMode(uint8_t mode, uint8_t enable);
+    bool setLEDDrive(uint8_t drive);
+    bool setProximityGain(uint8_t gain);
+    bool setAmbientLightGain(uint8_t gain);
+    bool setProxIntLowThresh(uint8_t threshold);
+    bool setProxIntHighThresh(uint8_t threshold);
+    bool setLightIntLowThreshold(uint16_t threshold);
+    bool setLightIntHighThreshold(uint16_t threshold);
+    bool setGestureEnterThresh(uint8_t threshold);
+    bool setGestureExitThresh(uint8_t threshold);
+    bool setGestureGain(uint8_t gain);
+    bool setGestureLEDDrive(uint8_t drive);
+    bool setGestureWaitTime(uint8_t time);
+    bool setGestureIntEnable(uint8_t enable);
+};
+
+#endif // SPARKFUN_APDS9960_H

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;test-19/Core/Src/SparkFun_APDS9960.h&apos; to &apos;SparkFunAPDS9960.h&apos;" description="Rename resource &apos;SparkFun_APDS9960.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/SparkFun_APDS9960.h" name="SparkFunAPDS9960.h" stamp="1717900383280" updateReferences="true"/>
+</session>
