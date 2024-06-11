@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <cmath>
 #include "defines.h"
 #include "vl53l0x_api.h"
 #include "TB6612FNG_Motor.h"
@@ -32,6 +33,8 @@
 #include "PololuServo.h"
 #include "VL53L0X.h"
 #include "SparkFunAPDS9960.h"
+#include "ConveyorBelt.h"
+#include "ColoredBlock.h"
 
 /* USER CODE END Includes */
 
@@ -79,8 +82,9 @@ PololuServo* My_Servo;
 VL53L0X_RangingMeasurementData_t RangingData;
 VL53L0X_Dev_t vl53l0x_c; // center module
 VL53L0X_DEV Dev = &vl53l0x_c;
-
+ConveyorBelt* My_Conveyor;
 SparkFun_APDS9960* My_Color_Sensor;
+ColoredBlock* My_Block;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -136,22 +140,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) // Not needed
 		My_Encoder->count = __HAL_TIM_GET_COUNTER(htim);
 	}
 }
-
-uint8_t Servo_Task(uint8_t state)
-{
-	switch(state)
-	{
-		case 1:
-	  		My_Servo->set_position(-30);
-	  		return 2;
-		case 2:
-	  		My_Servo->set_position(30);
-	  		return 1;
-		default:
-			return 0;
-	}
-}
-
 /* USER CODE END 0 */
 
 /**
@@ -190,8 +178,6 @@ int main(void)
   MX_TIM3_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  //VL53L0X_Init();
-
   My_Motor = new TB6612FNG_Motor
 		  (
 		  GPIOB, GPIO_PIN_14,
@@ -277,48 +263,53 @@ int main(void)
 //		  0x29
 //		  );
 
-  // Not shutdown pin for ToF_Sensor
+  My_Conveyor = new ConveyorBelt(My_Encoder, 38.1f);
 
+  // Not shutdown pin for ToF_Sensor
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
   VL53L0X_Init();
 
   // Color sensor
   My_Color_Sensor = new SparkFun_APDS9960(&hi2c1);
-  I2C_Scan(&huart2);
+  //I2C_Scan(&huart2);
 
-  if (My_Color_Sensor->init()) {
-      int string_length = sprintf(my_message, "My_Color_Sensor-9960 initialization complete\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  } else {
-      int string_length = sprintf(my_message, "Something went wrong during My_Color_Sensor-9960 init!\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  }
-
-  I2C_Scan(&huart2);
-  if (My_Color_Sensor->disableProximitySensor()) {
-      int string_length = sprintf(my_message, "Proximity sensor disabled successfully\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  } else {
-      int string_length = sprintf(my_message, "Failed to disable proximity sensor\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  }
-
-  if (My_Color_Sensor->disableGestureSensor()) {
-      int string_length = sprintf(my_message, "Gesture sensor disabled successfully\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  } else {
-      int string_length = sprintf(my_message, "Failed to disable gesture sensor\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  }
-
-  if (My_Color_Sensor->enableLightSensor()) {
-      int string_length = sprintf(my_message, "Light sensor enabled successfully\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  } else {
-      int string_length = sprintf(my_message, "Failed to enable light sensor\r\n");
-      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-  }
-  I2C_Scan(&huart2);
+  My_Color_Sensor->init();
+  My_Color_Sensor->disableProximitySensor();
+  My_Color_Sensor->disableGestureSensor();
+  My_Color_Sensor->enableLightSensor();
+//  if (My_Color_Sensor->init()) {
+//      int string_length = sprintf(my_message, "My_Color_Sensor-9960 initialization complete\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  } else {
+//      int string_length = sprintf(my_message, "Something went wrong during My_Color_Sensor-9960 init!\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  }
+//
+//  I2C_Scan(&huart2);
+//  if (My_Color_Sensor->disableProximitySensor()) {
+//      int string_length = sprintf(my_message, "Proximity sensor disabled successfully\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  } else {
+//      int string_length = sprintf(my_message, "Failed to disable proximity sensor\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  }
+//
+//  if (My_Color_Sensor->disableGestureSensor()) {
+//      int string_length = sprintf(my_message, "Gesture sensor disabled successfully\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  } else {
+//      int string_length = sprintf(my_message, "Failed to disable gesture sensor\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  }
+//
+//  if (My_Color_Sensor->enableLightSensor()) {
+//      int string_length = sprintf(my_message, "Light sensor enabled successfully\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  } else {
+//      int string_length = sprintf(my_message, "Failed to enable light sensor\r\n");
+//      HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//  }
+//  I2C_Scan(&huart2);
 
   uint16_t ambient_light, red_light, green_light, blue_light;
 
@@ -329,11 +320,10 @@ int main(void)
   number_of_states += 1;
   uint32_t last_tick_state[number_of_states] = {0};
   uint16_t task_frequencies[number_of_states] = {0};
-  task_frequencies[1] = 1; // Hz
-  task_frequencies[2] = CONTROL_FREQUENCY_HZ; // Hz
-  task_frequencies[3] = 2; // Hz
-  task_frequencies[4] = 4; // Hz
-  task_frequencies[5] = 2; // Hz
+  task_frequencies[1] = CONTROL_FREQUENCY_HZ; // Hz
+  task_frequencies[2] = 2; // Hz
+  task_frequencies[3] = 10; // Hz
+  task_frequencies[4] = 2; // Hz
   uint16_t task_periods[number_of_states] = {0};
 
   // Loop to calculate periods based on frequencies
@@ -345,11 +335,12 @@ int main(void)
       }
   }
 
-  uint8_t task_1_state = 1;
   uint16_t range_reading = -1;
   uint16_t block_range_mm = 50; //Threshold
-  // bool ready_for_new_block = true;
-
+  float distance_from_ToF_to_color_sensor = 42.0f;
+  bool ready_for_new_block = true;
+  float first_position;
+  float second_position;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -365,6 +356,7 @@ int main(void)
 	  {
 	  	  case 0:
 	  		  // Init
+	  		  My_Servo->set_position(0);
 	  		  HAL_Delay(300);
 	  		  My_Controller->run(0);
 	  		  My_Servo->set_position(0);
@@ -375,78 +367,148 @@ int main(void)
 	  		  task = 1;
 	  		  break;
 
-	  	  case 1: // Servo Control
-			  if (current_tick - last_tick_state[1] >= task_periods[1])
-			  {
-				  last_tick_state[1] = current_tick;
-				  task_1_state = Servo_Task(task_1_state);
-			  }
-
-			  // State change
-			  task = 2;
-			  break;
-
-	  	  case 2: // Motor Controller
-	  		  if (current_tick - last_tick_state[2] >= task_periods[2])
+	  	  case 1: // Motor Controller
+	  		  if (current_tick - last_tick_state[1] >= task_periods[1])
 	  		  {
-	  			  last_tick_state[2] = current_tick;
-	  			  Throttle->update_motor();
+	  			  last_tick_state[1] = current_tick;
+	  			  //Throttle->update_motor();
+
+		  		  // Set speed
+		  		  My_Controller->run(-15); // RPM
 	  		  }
 
 	  		  // State change
-	  		  task = 3;
+	  		  task = 2;
 	  		  break;
 
-	  	  case 3:
-			  if (current_tick - last_tick_state[3] >= task_periods[3])
+	  	  case 2: // ToF Sensor
+			  if (current_tick - last_tick_state[2] >= task_periods[2])
 			  {
-				  last_tick_state[3] = current_tick;
+				  last_tick_state[2] = current_tick;
 				  //range_reading = My_ToF_Sensor->read(&huart2, true);
 
 				  VL53L0X_PerformSingleRangingMeasurement(Dev, &RangingData);
-					if(RangingData.RangeStatus == 0) {
-						int string_length = sprintf(my_message, "Measured distance: %i\n\r", RangingData.RangeMilliMeter);
-						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
-					} else {
-						int string_length = sprintf(my_message, "Error\r\n");
-						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+//					if(RangingData.RangeStatus == 0) {
+//						int string_length = sprintf(my_message, "Measured distance: %i\n\r", RangingData.RangeMilliMeter);
+//						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+//					} else {
+//						int string_length = sprintf(my_message, "Error\r\n");
+//						HAL_UART_Transmit(&huart2, (uint8_t*)my_message, string_length, HAL_MAX_DELAY);
+//					}
+
+					if(ready_for_new_block)
+					{
+
+						if(RangingData.RangeMilliMeter <= block_range_mm)
+						{
+							// Debug message
+							int string_length = sprintf(my_message, "A block was found\r\n");
+							HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+
+							// Store the current encoder posiiton for later.
+							first_position = My_Conveyor->get_position();
+							string_length = sprintf(my_message, "Block position: %.3f mm.\r\n", first_position);
+							HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+
+							// Stop checking for blocks.
+							ready_for_new_block = false;
+
+							// Create a new block instance
+							My_Block = new ColoredBlock(My_Conveyor);
+						}
 					}
 			  }
 
 			  // State Changes
-			  task = 4;
+			  task = 3;
 			  break;
 
-	  	  case 4:
-	  		 if (current_tick - last_tick_state[4] >= task_periods[4])
-	  		 {
-	  			  last_tick_state[4] = current_tick;
-	  			  // Code goes here
-	  			  //I2C_Scan(&huart2);
-					bool success = My_Color_Sensor->readAmbientLight(ambient_light) &&
-								   My_Color_Sensor->readRedLight(red_light) &&
-								   My_Color_Sensor->readGreenLight(green_light) &&
-								   My_Color_Sensor->readBlueLight(blue_light);
+	  	  case 3: // Color Sensor
+			  if (current_tick - last_tick_state[3] >= task_periods[3])
+			  {
+				  last_tick_state[3] = current_tick;
 
-					if (success) {
-						int string_length = sprintf(my_message, "Ambient: %u, Red: %u, Green: %u, Blue: %u\r\n", ambient_light, red_light, green_light, blue_light);
-						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-					} else {
-						int string_length = sprintf(my_message, "Error reading light values!\r\n");
-						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-					}
-	  		 }
+				  if (not ready_for_new_block)
+				  {
+					  // Debug message
+					  second_position = My_Conveyor->get_position();
+					  int string_length = sprintf(my_message, "Block position: %.2f mm.\r\n", fabs(second_position-first_position));
+					  HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+
+					  if (fabs(second_position-first_position) >= distance_from_ToF_to_color_sensor)
+					  {
+						   // Debug message
+							string_length = sprintf(my_message, "Block has reached color sensor \r\n");
+							HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+
+						  // Update position of block
+						  My_Block->update_position(My_Conveyor->get_position()-first_position);
+
+						  // Read the color sensor
+//						   My_Color_Sensor->readAmbientLight(ambient_light);
+//						   My_Color_Sensor->readRedLight(red_light);
+//						   My_Color_Sensor->readGreenLight(green_light);
+//						   My_Color_Sensor->readBlueLight(blue_light);
+
+							bool success = My_Color_Sensor->readAmbientLight(ambient_light) &&
+										   My_Color_Sensor->readRedLight(red_light) &&
+										   My_Color_Sensor->readGreenLight(green_light) &&
+										   My_Color_Sensor->readBlueLight(blue_light);
+
+
+							if (success) {
+								int string_length = sprintf(my_message, "Ambient: %u, Red: %u, Green: %u, Blue: %u\r\n", ambient_light, red_light, green_light, blue_light);
+								HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+							} else {
+								int string_length = sprintf(my_message, "Error reading light values!\r\n");
+								HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+							}
+
+						  // Update the color of the block
+						  My_Block->update_color(red_light >= 100);
+
+						  // Read for new block
+						  ready_for_new_block = true;
+
+						  // Servo Position
+						  if (red_light >= 100)
+						  {
+							  My_Servo->set_position(-35);
+						  }
+						  else
+						  {
+							  My_Servo->set_position(40);
+						  }
+
+						  // Delete object
+						  delete My_Block;
+					  }
+				  }
+	  		  }
 
 	  		 // State changes
-	  		 task = 5;
+	  		 task = 4;
 	  		 break;
 
-	  	  case 5: // Debug messages
-	  		  if (current_tick - last_tick_state[5] >= task_periods[5])
+	  	  case 4: // Debug messages
+	  		  if (current_tick - last_tick_state[4] >= task_periods[4])
 	  		  {
-	  			  last_tick_state[5] = current_tick;
+	  			  last_tick_state[4] = current_tick;
 	  			  // My_Controller->debug_message(&huart2);
 	  			  // Throttle->debug_message(&huart2);
+//					bool success = My_Color_Sensor->readAmbientLight(ambient_light) &&
+//								   My_Color_Sensor->readRedLight(red_light) &&
+//								   My_Color_Sensor->readGreenLight(green_light) &&
+//								   My_Color_Sensor->readBlueLight(blue_light);
+//
+//
+//					if (success) {
+//						int string_length = sprintf(my_message, "Ambient: %u, Red: %u, Green: %u, Blue: %u\r\n", ambient_light, red_light, green_light, blue_light);
+//						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//					} else {
+//						int string_length = sprintf(my_message, "Error reading light values!\r\n");
+//						HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
+//					}
 
 	  			  // Is a block within range?
 				  if (range_reading < block_range_mm)

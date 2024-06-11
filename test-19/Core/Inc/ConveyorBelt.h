@@ -15,7 +15,7 @@
 class ConveyorBelt {
 public:
 	ConveyorBelt(PololuEncoder* encoder,
-			     uint8_t roller_diameter_mm);
+			     float roller_diameter_mm);
 	virtual ~ConveyorBelt();
 	float get_position();
 	void debug_message(UART_HandleTypeDef* uart_handle);

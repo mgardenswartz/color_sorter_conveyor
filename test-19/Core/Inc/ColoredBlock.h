@@ -8,15 +8,18 @@
 #ifndef SRC_COLOREDBLOCK_H_
 #define SRC_COLOREDBLOCK_H_
 
+#include "ConveyorBelt.h"
+
 class ColoredBlock {
 public:
-	ColoredBlock();
-	void update_position();
+	ColoredBlock(ConveyorBelt* conveyor);
+	void update_position(float new_position);
+	void update_color(bool new_color);
 	virtual ~ColoredBlock();
 
 	// Values
 	float position = 0;
-	char color[10] = "";
+	bool color; // 1 is red. 0 is blue.
 
 	// Attributes
 };

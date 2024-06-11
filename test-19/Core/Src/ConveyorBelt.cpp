@@ -8,22 +8,21 @@
 #include "ConveyorBelt.h"
 
 ConveyorBelt::ConveyorBelt(PololuEncoder* encoder,
-						   uint8_t roller_diameter_mm)
+						   float roller_diameter_mm)
 							: encoder(encoder),
 							  roller_diameter_mm(roller_diameter_mm)
 {
-
 }
 
 float ConveyorBelt::get_position()
 {
 	// Get the latest encoder position in ticks
-	encoder->update();
+	// encoder->update();
 	int32_t encoder_count = encoder->get_position();
 
 	// Convert that to a number of revolutions, then a linear position
 	float revolutions = encoder_count/(encoder->gear_ratio * (float)encoder->CPR);
-	linear_position = revolutions*roller_diameter_mm/2;
+	linear_position = revolutions*3.14159*2*roller_diameter_mm/2;
 	return linear_position;
 }
 

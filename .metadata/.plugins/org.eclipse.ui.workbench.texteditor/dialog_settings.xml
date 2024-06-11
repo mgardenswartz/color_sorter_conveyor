@@ -6,25 +6,32 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Scan"/>
+		<item key="selection" value="I2C_Scan(&amp;huart2)"/>
 		<list key="findhistory">
+			<item value="I2C_Scan(&amp;hi2c1)"/>
+			<item value="I2C_Scan()"/>
+			<item value="I2C_Scan"/>
+			<item value="apds"/>
+			<item value="DEBUG"/>
+			<item value="debug"/>
+			<item value="DEBUG "/>
+			<item value="&amp;hi2c1"/>
+			<item value="i2c1"/>
+			<item value="delay("/>
+			<item value="my_message"/>
+			<item value="static void"/>
 			<item value="scan"/>
 			<item value="msg"/>
 			<item value="begin 4"/>
-			<item value="VL53L0X_Init"/>
-			<item value="defin"/>
-			<item value="define"/>
-			<item value="&quot;&quot;"/>
-			<item value="Mess"/>
-			<item value="hal_uart_t"/>
-			<item value="hal_uart_"/>
-			<item value="CPU_CLOCK_MHZ"/>
-			<item value="self."/>
-			<item value="pTimer"/>
-			<item value="huart2"/>
-			<item value="huart"/>
 		</list>
 		<list key="replacehistory">
+			<item value="I2C_Scan(&amp;huart2)"/>
+			<item value="I2C_Scan(&amp;hi2c1)"/>
+			<item value="My_Color_Sensor"/>
+			<item value="SPARKFUN_DEBUG"/>
+			<item value="i2c_handle"/>
+			<item value="HAL_Delay("/>
+			<item value="HAL_Delay"/>
 			<item value="my_message"/>
 			<item value="CPU_CLOCK_SPEED_MHZ"/>
 			<item value=""/>
@@ -33,13 +40,6 @@
 			<item value="RC_SIGNAL_PERIOD_US"/>
 			<item value="MESSAGE_LENGTH"/>
 			<item value="CPU_CLOCK_SPEED"/>
-			<item value="_value"/>
-			<item value="int16_t"/>
-			<item value="neutral"/>
-			<item value="us_width"/>
-			<item value="string_length"/>
-			<item value="Receiver"/>
-			<item value="ReceiverDriver"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
