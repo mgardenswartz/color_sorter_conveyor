@@ -380,7 +380,7 @@ int main(void)
 	  			  int string_length = sprintf(my_message, "Channel value: %i/%i.\r\n",ThrottleChannel->value,ThrottleChannel->rescale_forward_magnitude);
 	  			  HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
 
-	  			  if (-ThrottleChannel->value >= 0.6*ThrottleChannel->rescale_forward_magnitude)
+	  			  if (abs(ThrottleChannel->value) >= 0.6*ThrottleChannel->rescale_forward_magnitude)
 				  {
 					 My_Controller->run(conveyor_speed);
 					 next_task = 3;

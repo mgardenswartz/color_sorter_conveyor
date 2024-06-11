@@ -321,7 +321,7 @@ int main(void)
   uint32_t last_tick_state[number_of_states] = {0};
   uint16_t task_frequencies[number_of_states] = {0};
   task_frequencies[1] = CONTROL_FREQUENCY_HZ; // Hz
-  task_frequencies[2] = 69;
+  task_frequencies[2] = 30; // Hz
   task_frequencies[3] = 2; // Hz
   task_frequencies[4] = 10; // Hz
   task_frequencies[5] = 2; // Hz
@@ -344,6 +344,7 @@ int main(void)
   bool ready_for_new_block = true;
   float first_position;
   float second_position;
+  float RC_dead_zone = 0.1f;
   int8_t conveyor_speed = -15;
   /* USER CODE END 2 */
 
@@ -371,30 +372,32 @@ int main(void)
 	  		  task = 1;
 	  		  break;
 	  	  case 1: // RC
-	  		  int next_task;
-
 	  		  if (current_tick - last_tick_state[1] >= task_periods[1])
 	  		  {
 	  			  last_tick_state[1] = current_tick;
-
-	  			  int string_length = sprintf(my_message, "Channel value: %i/%i.\r\n",ThrottleChannel->value,ThrottleChannel->rescale_forward_magnitude);
-	  			  HAL_UART_Transmit(&huart2, (uint8_t *)my_message, string_length, HAL_MAX_DELAY);
-
-	  			  if (-ThrottleChannel->value >= 0.6*ThrottleChannel->rescale_forward_magnitude)
+	  			  if (ThrottleChannel->value >= 0)
 				  {
-					 My_Controller->run(conveyor_speed);
-					 next_task = 3;
-				  }
+					  if (ThrottleChannel->value <= RC_dead_zone*ThrottleChannel->rescale_forward_magnitude)
+					  {
+						  My_Controller->run(0);
+					  }
+					  else
+					  {
+						  My_Controller->run(conveyor_speed);
+					  }
+	  			  }
 	  			  else
 	  			  {
-					My_Controller->run(0);
-					next_task = 1;
+					  if (ThrottleChannel->value <= -1*RC_dead_zone*ThrottleChannel->rescale_reverse_magnitude)
+					  {
+						  My_Controller->run(0);
+					  }
+					  else
+					  {
+						  My_Controller->run(conveyor_speed);
+					  }
 	  			  }
 	  		  }
-
-	  		  // State change
-	  		  task = next_task;
-	  		  break;
 
 	  	  case 2: // Motor Controller
 	  		  if (current_tick - last_tick_state[2] >= task_periods[2])
