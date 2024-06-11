@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="I2C_Scan(&amp;huart2)"/>
+		<item key="selection" value="update_motor"/>
 		<list key="findhistory">
+			<item value="update_motor"/>
+			<item value="throttlech"/>
+			<item value="throttle"/>
+			<item value="2.54"/>
+			<item value="488"/>
+			<item value="448"/>
+			<item value="ratio"/>
+			<item value="gear"/>
+			<item value="abs"/>
+			<item value="first_"/>
 			<item value="I2C_Scan(&amp;hi2c1)"/>
 			<item value="I2C_Scan()"/>
 			<item value="I2C_Scan"/>
 			<item value="apds"/>
 			<item value="DEBUG"/>
-			<item value="debug"/>
-			<item value="DEBUG "/>
-			<item value="&amp;hi2c1"/>
-			<item value="i2c1"/>
-			<item value="delay("/>
-			<item value="my_message"/>
-			<item value="static void"/>
-			<item value="scan"/>
-			<item value="msg"/>
-			<item value="begin 4"/>
 		</list>
 		<list key="replacehistory">
 			<item value="I2C_Scan(&amp;huart2)"/>
