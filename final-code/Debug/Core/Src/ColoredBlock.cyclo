@@ -1,0 +1,6 @@
+../Core/Src/ColoredBlock.cpp:16:1:ColoredBlock::ColoredBlock(ConveyorBelt*)	1
+../Core/Src/ColoredBlock.cpp:28:6:void ColoredBlock::set_home()	1
+../Core/Src/ColoredBlock.cpp:38:7:float ColoredBlock::update_position()	1
+../Core/Src/ColoredBlock.cpp:49:6:void ColoredBlock::update_color(bool)	1
+../Core/Src/ColoredBlock.cpp:58:1:ColoredBlock::~ColoredBlock()	1
+../Core/Src/ColoredBlock.cpp:58:1:virtual ColoredBlock::~ColoredBlock()	1

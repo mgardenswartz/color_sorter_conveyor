@@ -1,0 +1,72 @@
+../Core/Src/SparkFunAPDS9960.cpp:24:1:SparkFun_APDS9960::SparkFun_APDS9960(I2C_HandleTypeDef*)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:43:1:SparkFun_APDS9960::~SparkFun_APDS9960()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:53:6:bool SparkFun_APDS9960::init()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:204:9:uint8_t SparkFun_APDS9960::getMode()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:223:6:bool SparkFun_APDS9960::setMode(uint8_t, uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:263:6:bool SparkFun_APDS9960::enableLightSensor(bool)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:295:6:bool SparkFun_APDS9960::disableLightSensor()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:313:6:bool SparkFun_APDS9960::enableProximitySensor(bool)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:346:6:bool SparkFun_APDS9960::disableProximitySensor()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:364:6:bool SparkFun_APDS9960::enableGestureSensor(bool)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:416:6:bool SparkFun_APDS9960::disableGestureSensor()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:437:6:bool SparkFun_APDS9960::isGestureAvailable()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:462:5:int SparkFun_APDS9960::readGesture()	168	static
+../Core/Src/SparkFunAPDS9960.cpp:577:6:bool SparkFun_APDS9960::enablePower()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:591:6:bool SparkFun_APDS9960::disablePower()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:610:6:bool SparkFun_APDS9960::readAmbientLight(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:636:6:bool SparkFun_APDS9960::readRedLight(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:662:6:bool SparkFun_APDS9960::readGreenLight(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:688:6:bool SparkFun_APDS9960::readBlueLight(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:718:6:bool SparkFun_APDS9960::readProximity(uint8_t&)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:737:6:void SparkFun_APDS9960::resetGestureParameters()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:760:6:bool SparkFun_APDS9960::processGestureData()	56	static
+../Core/Src/SparkFunAPDS9960.cpp:962:6:bool SparkFun_APDS9960::decodeGesture()	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1022:9:uint8_t SparkFun_APDS9960::getProxIntLowThresh()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1040:6:bool SparkFun_APDS9960::setProxIntLowThresh(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1054:9:uint8_t SparkFun_APDS9960::getProxIntHighThresh()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1072:6:bool SparkFun_APDS9960::setProxIntHighThresh(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1092:9:uint8_t SparkFun_APDS9960::getLEDDrive()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1119:6:bool SparkFun_APDS9960::setLEDDrive(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1153:9:uint8_t SparkFun_APDS9960::getProximityGain()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1180:6:bool SparkFun_APDS9960::setProximityGain(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1214:9:uint8_t SparkFun_APDS9960::getAmbientLightGain()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1241:6:bool SparkFun_APDS9960::setAmbientLightGain(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1274:9:uint8_t SparkFun_APDS9960::getLEDBoost()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1301:6:bool SparkFun_APDS9960::setLEDBoost(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1329:9:uint8_t SparkFun_APDS9960::getProxGainCompEnable()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1350:7:bool SparkFun_APDS9960::setProxGainCompEnable(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1385:9:uint8_t SparkFun_APDS9960::getProxPhotoMask()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1413:6:bool SparkFun_APDS9960::setProxPhotoMask(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1440:9:uint8_t SparkFun_APDS9960::getGestureEnterThresh()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1458:6:bool SparkFun_APDS9960::setGestureEnterThresh(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1472:9:uint8_t SparkFun_APDS9960::getGestureExitThresh()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1490:6:bool SparkFun_APDS9960::setGestureExitThresh(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1510:9:uint8_t SparkFun_APDS9960::getGestureGain()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1537:6:bool SparkFun_APDS9960::setGestureGain(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1571:9:uint8_t SparkFun_APDS9960::getGestureLEDDrive()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1598:6:bool SparkFun_APDS9960::setGestureLEDDrive(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1636:9:uint8_t SparkFun_APDS9960::getGestureWaitTime()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1667:6:bool SparkFun_APDS9960::setGestureWaitTime(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1695:6:bool SparkFun_APDS9960::getLightIntLowThreshold(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1721:6:bool SparkFun_APDS9960::setLightIntLowThreshold(uint16_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1749:6:bool SparkFun_APDS9960::getLightIntHighThreshold(uint16_t&)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1775:6:bool SparkFun_APDS9960::setLightIntHighThreshold(uint16_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1803:6:bool SparkFun_APDS9960::getProximityIntLowThreshold(uint8_t&)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1821:6:bool SparkFun_APDS9960::setProximityIntLowThreshold(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1838:6:bool SparkFun_APDS9960::getProximityIntHighThreshold(uint8_t&)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1856:6:bool SparkFun_APDS9960::setProximityIntHighThreshold(uint8_t)	16	static
+../Core/Src/SparkFunAPDS9960.cpp:1872:9:uint8_t SparkFun_APDS9960::getAmbientLightIntEnable()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1893:6:bool SparkFun_APDS9960::setAmbientLightIntEnable(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1921:9:uint8_t SparkFun_APDS9960::getProximityIntEnable()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1942:6:bool SparkFun_APDS9960::setProximityIntEnable(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1970:9:uint8_t SparkFun_APDS9960::getGestureIntEnable()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:1991:6:bool SparkFun_APDS9960::setGestureIntEnable(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:2019:6:bool SparkFun_APDS9960::clearAmbientLightInt()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:2034:6:bool SparkFun_APDS9960::clearProximityInt()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:2049:9:uint8_t SparkFun_APDS9960::getGestureMode()	24	static
+../Core/Src/SparkFunAPDS9960.cpp:2070:6:bool SparkFun_APDS9960::setGestureMode(uint8_t)	24	static
+../Core/Src/SparkFunAPDS9960.cpp:2102:6:bool SparkFun_APDS9960::wireWriteByte(uint8_t)	32	static
+../Core/Src/SparkFunAPDS9960.cpp:2120:6:bool SparkFun_APDS9960::wireWriteDataByte(uint8_t, uint8_t)	32	static
+../Core/Src/SparkFunAPDS9960.cpp:2141:6:bool SparkFun_APDS9960::wireWriteDataBlock(uint8_t, uint8_t*, unsigned int)	48	static
+../Core/Src/SparkFunAPDS9960.cpp:2161:6:bool SparkFun_APDS9960::wireReadDataByte(uint8_t, uint8_t&)	48	static
+../Core/Src/SparkFunAPDS9960.cpp:2182:5:int SparkFun_APDS9960::wireReadDataBlock(uint8_t, uint8_t*, unsigned int)	48	static

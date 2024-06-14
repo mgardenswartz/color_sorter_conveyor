@@ -1,0 +1,11 @@
+../Core/Src/MotorControl.cpp:20:1:MotorControl::MotorControl(TB6612FNG_Motor*, PololuEncoder*, uint32_t, float, float, float)	40	static
+../Core/Src/MotorControl.cpp:42:1:MotorControl::~MotorControl()	16	static
+../Core/Src/MotorControl.cpp:42:1:virtual MotorControl::~MotorControl()	16	static
+../Core/Src/MotorControl.cpp:52:6:void MotorControl::debug_message(UART_HandleTypeDef*)	208	static
+../Core/Src/MotorControl.cpp:70:6:void MotorControl::run(float)	24	static
+../Core/Src/MotorControl.cpp:91:9:int16_t MotorControl::get_effort_sat(float, float)	40	static
+../Core/Src/MotorControl.cpp:133:6:void MotorControl::reinitialize()	16	static
+../Core/Src/MotorControl.cpp:153:6:void MotorControl::update_KP(float)	16	static
+../Core/Src/MotorControl.cpp:164:6:void MotorControl::update_KI(float)	16	static
+../Core/Src/MotorControl.cpp:175:6:void MotorControl::update_KD(float)	16	static
+../Core/Src/MotorControl.cpp:186:6:void MotorControl::update_control_frequency(uint32_t)	16	static

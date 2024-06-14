@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="update_motor"/>
+		<item key="selection" value="My_Conveyor"/>
 		<list key="findhistory">
+			<item value="my_conveyor"/>
+			<item value="my_block"/>
+			<item value="update_pos"/>
 			<item value="update_motor"/>
 			<item value="throttlech"/>
 			<item value="throttle"/>
@@ -20,9 +23,6 @@
 			<item value="first_"/>
 			<item value="I2C_Scan(&amp;hi2c1)"/>
 			<item value="I2C_Scan()"/>
-			<item value="I2C_Scan"/>
-			<item value="apds"/>
-			<item value="DEBUG"/>
 		</list>
 		<list key="replacehistory">
 			<item value="I2C_Scan(&amp;huart2)"/>
@@ -43,10 +43,10 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1090"/>
-		<item key="DIALOG_Y_ORIGIN" value="300"/>
+		<item key="DIALOG_X_ORIGIN" value="-207"/>
+		<item key="DIALOG_Y_ORIGIN" value="214"/>
 		<item key="DIALOG_WIDTH" value="318"/>
-		<item key="DIALOG_HEIGHT" value="354"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+		<item key="DIALOG_HEIGHT" value="220"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-21|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

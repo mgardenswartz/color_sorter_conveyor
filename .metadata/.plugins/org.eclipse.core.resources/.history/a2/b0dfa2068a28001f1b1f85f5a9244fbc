@@ -1,0 +1,35 @@
+/**
+ * @file ColoredBlock.cpp
+ * @brief Colored block class to track blocks.
+ * @author Max Gardenswartz
+ * @date Jun 6, 2024
+ */
+
+#include "ColoredBlock.h"
+
+ColoredBlock::ColoredBlock(ConveyorBelt* conveyor)
+	: conveyor(conveyor)
+{
+	// Set home on instantiation
+	set_home();
+}
+
+void ColoredBlock::set_home()
+{
+	home = conveyor->get_position();
+}
+
+void ColoredBlock::update_position()
+{
+	position = conveyor->get_position()-home;
+}
+
+void ColoredBlock::update_color(bool new_color)
+{
+	color = new_color;
+}
+
+ColoredBlock::~ColoredBlock()
+{
+}
+
