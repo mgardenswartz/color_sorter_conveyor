@@ -1,4 +1,4 @@
-![image](https://github.com/mgardenswartz/color_sorter_conveyor/assets/134117510/faa48d93-8eeb-4bce-9cc4-0a0461816d12)
+![image](https://github.com/mgardenswartz/color_sorter_conveyor/assets/134117510/98b3bc27-004b-46b7-9604-676cf0900080)
 
 This code runs on an STM32F411CEU6. 
 
