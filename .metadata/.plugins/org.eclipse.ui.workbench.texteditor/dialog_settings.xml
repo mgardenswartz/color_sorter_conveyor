@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="My_Conveyor"/>
+		<item key="selection" value="satu"/>
 		<list key="findhistory">
+			<item value="satu"/>
 			<item value="my_conveyor"/>
 			<item value="my_block"/>
 			<item value="update_pos"/>
@@ -22,7 +23,6 @@
 			<item value="abs"/>
 			<item value="first_"/>
 			<item value="I2C_Scan(&amp;hi2c1)"/>
-			<item value="I2C_Scan()"/>
 		</list>
 		<list key="replacehistory">
 			<item value="I2C_Scan(&amp;huart2)"/>
